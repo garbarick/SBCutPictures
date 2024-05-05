@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	android:orientation="vertical"
+	android:id="@+id/main">
+
+	<LinearLayout
+		android:orientation="horizontal"
+		android:layout_width="match_parent"
+		android:layout_height="50dp">
+
+		<ImageButton
+			android:layout_width="50dp"
+			android:layout_height="match_parent"
+			android:src="@android:drawable/ic_menu_manage"
+			android:layout_weight="1"
+			android:id="@+id/settings"/>
+
+		<ImageButton
+			android:layout_width="50dp"
+			android:layout_height="match_parent"
+			android:src="@android:drawable/ic_media_previous"
+			android:layout_weight="1"
+			android:id="@+id/previous"/>
+
+		<ImageButton
+			android:layout_width="50dp"
+			android:layout_height="match_parent"
+			android:src="@android:drawable/ic_media_next"
+			android:layout_weight="1"
+			android:id="@+id/next"/>
+
+	</LinearLayout>
+
+	<TextView
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:singleLine="true"
+		android:id="@+id/file"
+		android:ellipsize="start"/>
+
+	<ImageView
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		android:layout_weight="1"
+		android:id="@+id/img"/>
+
+	<ProgressBar
+		android:layout_width="match_parent"
+		style="?android:attr/progressBarStyleHorizontal"
+		android:layout_height="wrap_content"
+		android:id="@+id/progress"/>
+
+</LinearLayout>
+

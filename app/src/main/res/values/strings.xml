@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app">SBCutPictures</string>
+    <string name="uncaught_exception">Uncaught exception</string>
+    <string name="error_not_implemented">It is not implemented</string>
+</resources>

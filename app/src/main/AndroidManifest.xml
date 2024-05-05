@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    package="ru.net.serbis.cut.pictures">
+
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+
+    <application
+        android:name=".App"
+        android:allowBackup="true"
+        android:icon="@drawable/app"
+        android:label="@string/app"
+        android:theme="@style/app"
+		android:resizeableActivity = "true">
+
+        <activity
+            android:name=".activity.Main"
+            android:label="@string/app">
+
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+
+            <activity
+                android:name=".activity.ExceptionReport"
+                android:label="@string/uncaught_exception">
+            </activity>
+
+        </activity>
+
+    </application>
+
+</manifest>
