@@ -1,7 +1,6 @@
 package ru.net.serbis.cut.pictures.activity;
 
 import android.app.*;
-import android.graphics.*;
 import android.os.*;
 import android.view.*;
 import android.widget.*;
@@ -10,15 +9,13 @@ import java.util.*;
 import ru.net.serbis.cut.pictures.*;
 import ru.net.serbis.cut.pictures.task.*;
 import ru.net.serbis.cut.pictures.util.*;
+import ru.net.serbis.cut.pictures.view.*;
 
 public class Main extends Activity implements TaskCallback<List<File>>, View.OnClickListener
 {
     private LinearLayout main;
-    private TextView fileName;
-    private ImageView img;
+    private FileImageView img;
     private ProgressBar progress;
-    private List<File> files = new ArrayList<File>();
-    private int position;
 
     @Override
     protected void onCreate(Bundle state)
@@ -28,8 +25,8 @@ public class Main extends Activity implements TaskCallback<List<File>>, View.OnC
         setContentView(R.layout.main);
 
         main = UITool.get().findView(this, R.id.main);
-        fileName = UITool.get().findView(this, R.id.file);
         img = UITool.get().findView(this, R.id.img);
+        img.init(this);
         progress = UITool.get().findView(this, R.id.progress);
         UITool.get().initButtons(this, this, R.id.settings, R.id.previous, R.id.next);
 
@@ -53,24 +50,7 @@ public class Main extends Activity implements TaskCallback<List<File>>, View.OnC
         {
             return;
         }
-        files.clear();
-        files.addAll(result);
-
-        position = 0;
-        setFile();
-    }
-
-    private void setFile()
-    {
-        img.setImageBitmap(null);
-        if (files.isEmpty())
-        {
-            return;
-        }
-        File file = files.get(position);
-        fileName.setText(file.getAbsolutePath());
-        Bitmap bitmap = BitmapFactory.decodeFile(file.getAbsolutePath());
-        img.setImageBitmap(bitmap);
+        img.setFiles(result);
     }
 
     @Override
@@ -81,14 +61,10 @@ public class Main extends Activity implements TaskCallback<List<File>>, View.OnC
             case R.id.settings:
                 break;
             case R.id.previous:
-                position --;
-                position = Math.max(0, position);
-                setFile();
+                img.previous();
                 break;
             case R.id.next:
-                position ++;
-                position = Math.min(files.size() - 1, position);
-                setFile();
+                img.next();
                 break;
         }
     }

@@ -16,17 +16,15 @@
         <activity
             android:name=".activity.Main"
             android:label="@string/app">
-
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
+        </activity>
 
-            <activity
-                android:name=".activity.ExceptionReport"
-                android:label="@string/uncaught_exception">
-            </activity>
-
+        <activity
+            android:name=".activity.ExceptionReport"
+            android:label="@string/uncaught_exception">
         </activity>
 
     </application>
