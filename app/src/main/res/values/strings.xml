@@ -3,4 +3,7 @@
     <string name="app">SBCutPictures</string>
     <string name="uncaught_exception">Uncaught exception</string>
     <string name="error_not_implemented">It is not implemented</string>
+    <string name="width_value">width=%d</string>
+    <string name="height_value">height=%d</string>
+    <string name="scale_value">scale=%.2f</string>
 </resources>

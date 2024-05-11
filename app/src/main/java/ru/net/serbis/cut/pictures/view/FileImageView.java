@@ -18,6 +18,7 @@ public class FileImageView extends ImageView implements View.OnTouchListener
     private TextView widthView;
     private TextView heightView;
     private TextView scaleView;
+    private LinearLayout parent;
 
     private List<File> files = new ArrayList<File>();
     private int position;
@@ -51,7 +52,6 @@ public class FileImageView extends ImageView implements View.OnTouchListener
                 break;
         }
         state.apply(this);
-        setScaleView(state.getScale());
         return true;
     }
 
@@ -61,6 +61,7 @@ public class FileImageView extends ImageView implements View.OnTouchListener
         widthView = UITool.get().findView(context, R.id.width);
         heightView = UITool.get().findView(context, R.id.height);
         scaleView = UITool.get().findView(context, R.id.scale);
+        parent = (LinearLayout) getParent();
     }
 
     public void setFiles(List<File> files)
@@ -88,10 +89,10 @@ public class FileImageView extends ImageView implements View.OnTouchListener
         nameView.setText(file.getAbsolutePath());
         Bitmap bitmap = BitmapFactory.decodeFile(file.getAbsolutePath());
         setImageBitmap(bitmap);
-        widthView.setText("width=" + bitmap.getWidth());
-        heightView.setText("height=" + bitmap.getHeight());
-        setScaleView(1);
+        widthView.setText(Strings.get().get(R.string.width_value, bitmap.getWidth()));
+        heightView.setText(Strings.get().get(R.string.height_value, bitmap.getHeight()));
         state.init(this);
+        initScale(bitmap);
     }
 
     public void next()
@@ -106,8 +107,15 @@ public class FileImageView extends ImageView implements View.OnTouchListener
         setFile();
     }
 
-    private void setScaleView(float scale)
+    public void setScaleView(float scale)
     {
-        scaleView.setText(String.format("scale=%.2f", scale));
+        scaleView.setText(Strings.get().get(R.string.scale_value, scale));
+    }
+
+    private void initScale(Bitmap bitmap)
+    {
+        float scale = parent.getWidth() / (1f * bitmap.getWidth());
+        state.setScale(scale, scale, 0, 0);
+        state.apply(this);
     }
 }

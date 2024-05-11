@@ -26,13 +26,22 @@ public class Main extends Activity implements TaskCallback<List<File>>, View.OnC
 
         main = UITool.get().findView(this, R.id.main);
         img = UITool.get().findView(this, R.id.img);
-        img.init(this);
         progress = UITool.get().findView(this, R.id.progress);
         UITool.get().initButtons(this, this, R.id.settings, R.id.previous, R.id.next);
 
-        String dir = IOTool.get().getDownloadPath();
-        UITool.get().disableAll(main);
-        new FileListLoaderTask(this).execute(dir);
+        img.post(
+            new Runnable() 
+            {
+                @Override
+                public void run()
+                {
+                    img.init(Main.this);
+                    String dir = IOTool.get().getDownloadPath();
+                    UITool.get().disableAll(main);
+                    new FileListLoaderTask(Main.this).execute(dir);
+                }
+            }
+        );
     }
 
     @Override

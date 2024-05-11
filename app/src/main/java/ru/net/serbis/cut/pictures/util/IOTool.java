@@ -2,7 +2,6 @@ package ru.net.serbis.cut.pictures.util;
 
 import android.os.*;
 import java.io.*;
-import java.util.*;
 import ru.net.serbis.cut.pictures.*;
 
 public class IOTool
@@ -97,36 +96,6 @@ public class IOTool
     {
         return Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_MUSIC).getAbsolutePath();
     }
-    
-    public List<String> findFiles(String fileListPath)
-    {
-        List<String> result = new ArrayList<String>();
-        File file = new File(fileListPath);
-        BufferedReader reader = null;
-        try
-        {
-            reader = new BufferedReader(new InputStreamReader(new FileInputStream(file)));
-            String line;
-            while ((line = reader.readLine()) != null)
-            {
-                if (checkExt(line))
-                {
-                    result.add(line);
-                }
-            }
-        }
-        catch (Throwable e)
-        {
-            Log.error(this, e);
-        }
-        finally
-        {
-            close(reader);
-            file.delete();
-        }
-        Collections.sort(result);
-        return result;
-	}
     
     public String getExt(String fileName)
     {

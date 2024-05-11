@@ -2,7 +2,7 @@ package ru.net.serbis.cut.pictures.bean;
 
 import android.graphics.*;
 import android.view.*;
-import android.widget.*;
+import ru.net.serbis.cut.pictures.view.*;
 
 public class MatrixState
 {
@@ -12,9 +12,14 @@ public class MatrixState
     private MatrixMode mode = MatrixMode.NONE;
     private float space;
 
-    public void init(ImageView view)
+    public void init(FileImageView view)
     {
         matrix = view.getMatrix();
+    }
+
+    public Matrix getMatrix()
+    {
+        return matrix;
     }
 
     public void cancel()
@@ -39,12 +44,13 @@ public class MatrixState
         matrix.postTranslate(event.getX() - start.x, event.getY() - start.y);
     }
 
-    public void apply(ImageView view)
+    public void apply(FileImageView view)
     {
         view.setImageMatrix(matrix);
+        view.setScaleView(getScale());
     }
 
-    public void reset(ImageView view)
+    public void reset(FileImageView view)
     {
         cancel();
         space = 0;
@@ -98,7 +104,7 @@ public class MatrixState
         {
             matrix.set(stored);
             float scale = space / this.space;
-            matrix.postScale(scale, scale, start.x, start.y);
+            setScale(scale, scale, start.x, start.y);
         }
     }
 
@@ -107,5 +113,10 @@ public class MatrixState
         float[] values = new float[9];
         matrix.getValues(values);
         return values[Matrix.MSCALE_X];
+    }
+
+    public void setScale(float sx, float sy, float px, float py)
+    {
+        matrix.postScale(sx, sy, px, py);
     }
 }

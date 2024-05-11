@@ -13,6 +13,7 @@ public class App extends Application
 
         UITool.get().set(this);
         SysTool.get().set(this);
+        Strings.get().set(this);
         Thread.setDefaultUncaughtExceptionHandler(new ExceptionHandler(this));
     }
 }
