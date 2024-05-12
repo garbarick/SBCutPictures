@@ -1,6 +1,7 @@
 package ru.net.serbis.cut.pictures.activity;
 
 import android.app.*;
+import android.content.res.*;
 import android.os.*;
 import android.view.*;
 import android.widget.*;
@@ -22,12 +23,12 @@ public class Main extends Activity implements TaskCallback<List<File>>, View.OnC
     {
         super.onCreate(state);
         SysTool.get().initPermissions(this);
-        setContentView(R.layout.main);
+        setContentView(getLayout());
 
         main = UITool.get().findView(this, R.id.main);
         img = UITool.get().findView(this, R.id.img);
         progress = UITool.get().findView(this, R.id.progress);
-        UITool.get().initButtons(this, this, R.id.settings, R.id.previous, R.id.next);
+        UITool.get().initAllButtons(main, this);
 
         img.post(
             new Runnable() 
@@ -42,6 +43,16 @@ public class Main extends Activity implements TaskCallback<List<File>>, View.OnC
                 }
             }
         );
+    }
+
+    private int getLayout()
+    {
+        if (Configuration.ORIENTATION_LANDSCAPE == getResources().getConfiguration().orientation)
+        {
+            requestWindowFeature(Window.FEATURE_NO_TITLE);
+            return R.layout.main_landscape;
+        }
+        return R.layout.main_portrait;
     }
 
     @Override
@@ -68,6 +79,16 @@ public class Main extends Activity implements TaskCallback<List<File>>, View.OnC
         switch (view.getId())
         {
             case R.id.settings:
+                UITool.get().notImplementedYet();
+                break;
+            case R.id.rotate:
+                img.rotate();
+                break;
+            case R.id.mirror:
+                img.mirror();
+                break;
+            case R.id.fit_width:
+                img.fitWidth();
                 break;
             case R.id.previous:
                 img.previous();

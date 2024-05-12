@@ -19,10 +19,11 @@ public class FileImageView extends ImageView implements View.OnTouchListener
     private TextView heightView;
     private TextView scaleView;
     private LinearLayout parent;
+    private TextView stateView;
 
     private List<File> files = new ArrayList<File>();
     private int position;
-    private MatrixState state = new MatrixState();
+    private MatrixState state = new MatrixState(this);
 
     public FileImageView(Context context, AttributeSet attrs)
     {
@@ -51,7 +52,7 @@ public class FileImageView extends ImageView implements View.OnTouchListener
                 state.endZoom(event);
                 break;
         }
-        state.apply(this);
+        state.apply();
         return true;
     }
 
@@ -62,6 +63,7 @@ public class FileImageView extends ImageView implements View.OnTouchListener
         heightView = UITool.get().findView(context, R.id.height);
         scaleView = UITool.get().findView(context, R.id.scale);
         parent = (LinearLayout) getParent();
+        stateView = UITool.get().findView(context, R.id.state);
     }
 
     public void setFiles(List<File> files)
@@ -75,7 +77,8 @@ public class FileImageView extends ImageView implements View.OnTouchListener
     private void clear()
     {
         setImageBitmap(null);
-        state.reset(this);
+        state.reset();
+        setSizeView(0, 0);
     }
 
     private void setFile()
@@ -86,13 +89,11 @@ public class FileImageView extends ImageView implements View.OnTouchListener
             return;
         }
         File file = files.get(position);
-        nameView.setText(file.getAbsolutePath());
+        setNameView(file.getAbsolutePath());
         Bitmap bitmap = BitmapFactory.decodeFile(file.getAbsolutePath());
         setImageBitmap(bitmap);
-        widthView.setText(Strings.get().get(R.string.width_value, bitmap.getWidth()));
-        heightView.setText(Strings.get().get(R.string.height_value, bitmap.getHeight()));
-        state.init(this);
-        initScale(bitmap);
+        setSizeView(bitmap.getWidth(), bitmap.getHeight());
+        fitWidth();
     }
 
     public void next()
@@ -107,15 +108,43 @@ public class FileImageView extends ImageView implements View.OnTouchListener
         setFile();
     }
 
+    public void setNameView(String text)
+    {
+        nameView.setText(text);
+    }
+
+    public void setSizeView(int width, int height)
+    {
+        widthView.setText(Strings.get().get(R.string.width_value, width));
+        heightView.setText(Strings.get().get(R.string.height_value, height));
+    }
+
     public void setScaleView(float scale)
     {
         scaleView.setText(Strings.get().get(R.string.scale_value, scale));
     }
 
-    private void initScale(Bitmap bitmap)
+    public void setStateView(String text)
     {
-        float scale = parent.getWidth() / (1f * bitmap.getWidth());
-        state.setScale(scale, scale, 0, 0);
-        state.apply(this);
+        stateView.setText(text);
+    }
+
+    public void rotate()
+    {
+        state.rotate(parent);
+        fitWidth();
+    }
+
+    public void fitWidth()
+    {
+        state.fitWidth(parent);
+        state.toCenter();
+        state.apply();
+    }
+
+    public void mirror()
+    {
+        state.mirror(parent);
+        state.apply();
     }
 }

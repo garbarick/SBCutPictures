@@ -148,6 +148,23 @@ public class UITool extends Util
         }
     }
 
+    public void initAllButtons(ViewGroup view, View.OnClickListener tool)
+    {
+        for (int i = 0; i < view.getChildCount(); i ++)
+        {
+            View child = view.getChildAt(i);
+            if (child instanceof ViewGroup)
+            {
+                initAllButtons((ViewGroup) child, tool);
+            }
+            else if (child instanceof Button ||
+                     child instanceof ImageButton)
+            {
+                child.setOnClickListener(tool);
+            }
+        }
+    }
+
     public void runOnUiThread(Runnable run)
     {
         hadler.post(run);
