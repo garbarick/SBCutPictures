@@ -19,7 +19,6 @@ public class FileImageView extends ImageView implements View.OnTouchListener
     private TextView heightView;
     private TextView scaleView;
     private LinearLayout parent;
-    private TextView stateView;
 
     private List<File> files = new ArrayList<File>();
     private int position;
@@ -63,7 +62,6 @@ public class FileImageView extends ImageView implements View.OnTouchListener
         heightView = UITool.get().findView(context, R.id.height);
         scaleView = UITool.get().findView(context, R.id.scale);
         parent = (LinearLayout) getParent();
-        stateView = UITool.get().findView(context, R.id.state);
     }
 
     public void setFiles(List<File> files)
@@ -122,11 +120,6 @@ public class FileImageView extends ImageView implements View.OnTouchListener
     public void setScaleView(float scale)
     {
         scaleView.setText(Strings.get().get(R.string.scale_value, scale));
-    }
-
-    public void setStateView(String text)
-    {
-        stateView.setText(text);
     }
 
     public void rotate()

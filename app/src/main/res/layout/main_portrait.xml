@@ -31,7 +31,7 @@
 			android:src="@drawable/mirror"
 			android:layout_weight="1"
 			android:id="@+id/mirror"
-            android:scaleType="centerInside"/>
+			android:scaleType="centerInside"/>
 
 		<ImageButton
 			android:src="@drawable/fit_width"
@@ -76,12 +76,6 @@
 			android:id="@+id/img"/>
 
 	</LinearLayout>
-
-	<TextView
-		android:layout_width="match_parent"
-		android:layout_height="wrap_content"
-		android:singleLine="true"
-		android:id="@+id/state"/>
 
 	<LinearLayout
 		android:orientation="horizontal"

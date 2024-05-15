@@ -14,7 +14,8 @@ public class MatrixState
     private MatrixMode mode = MatrixMode.NONE;
     private float space;
     private int rotate;
-    private boolean mirror;
+    private int mirrorX;
+    private int mirrorY;
 
     public MatrixState(FileImageView view)
     {
@@ -52,7 +53,6 @@ public class MatrixState
     {
         view.setImageMatrix(matrix);
         view.setScaleView(getScale());
-        view.setStateView(getMatrixAsString());
     }
 
     public void reset()
@@ -60,7 +60,8 @@ public class MatrixState
         cancel();
         space = 0;
         rotate = 0;
-        mirror = false;
+        mirrorX = 0;
+        mirrorY = 0;
         start.set(new PointF());
         matrix.reset();
         apply();
@@ -117,8 +118,14 @@ public class MatrixState
 
     public String getMatrixAsString()
     {
+        return getValuesAsString(getValues()) + "\n" + 
+            getValuesAsString(getPosition());
+    }
+        
+    private String getValuesAsString(float[] values)
+    {
         StringBuilder text = new StringBuilder();
-        for (float value : getValues())
+        for (float value : values)
         {
             text.append(String.format("%.2f, ", value));
         }
@@ -130,6 +137,13 @@ public class MatrixState
         float[] values = new float[9];
         matrix.getValues(values);
         return values;
+    }
+
+    private float[] getPosition()
+    {
+        float[] points = new float[2];
+        matrix.mapPoints(points);
+        return points;
     }
 
     public float getScale()
@@ -172,41 +186,134 @@ public class MatrixState
         scale /= getScale();
         setScale(scale, scale, 0, 0);
     }
+
+    private float absMax(float v1, float v2)
+    {
+        if (Math.abs(v1) > Math.abs(v2))
+        {
+            return v1;
+        }
+        return v2;
+    }
     
     public void toCenter()
     {
         float[] values = getValues();
-        float x = - values[Matrix.MTRANS_X];
-        float y = - values[Matrix.MTRANS_Y];
-        float scale = getScale(values);
+        float x = values[Matrix.MTRANS_X];
+        float y = values[Matrix.MTRANS_Y];
+
+        float sx = absMax(values[Matrix.MSCALE_X], values[Matrix.MSKEW_X]);
+        float sy = absMax(values[Matrix.MSCALE_Y], values[Matrix.MSKEW_Y]);
+ 
         Rect rect = view.getDrawable().getBounds();
-        float dx = rect.width() * scale;
-        float dy = rect.height() * scale;
-        switch (rotate)
+        float dx = rect.width() * sx;
+        float dy = rect.height() * sy;
+
+        float nx = -x;
+        float ny = -y;
+
+        if (mirrorX == 0 && mirrorY == 0)
         {
-            case 0:
-                x += mirror ? dx : 0;
-                break;
-            case 90:
-                x += dy;
-                y += mirror ? dx : 0;
-                break;
-            case 180:
-                x += mirror ? 0 : dx;
-                y += dy;
-                break;
-            case 270:
-                y += mirror ? 0 : dx;
-                break;
+            switch (rotate)
+            {
+                case 0:
+                    nx += 0;
+                    ny += 0;
+                    break;
+                case 90:
+                    nx += dy;
+                    ny += 0;
+                    break;
+                case 180:
+                    nx += -dx;
+                    ny += -dy;
+                    break;
+                case 270:
+                    nx += 0;
+                    ny += dx;
+                    break;
+            }
         }
-        matrix.postTranslate(x, y);
+        else if (mirrorX == 1 && mirrorY == 0)
+        {
+            switch (rotate)
+            {
+                case 0:
+                    nx += -dx;
+                    ny += 0;
+                    break;
+                case 90:
+                    nx += -dy;
+                    ny += -dx;
+                    break;
+                case 180:
+                    nx += 0;
+                    ny += -dy;
+                    break;
+                case 270:
+                    nx += 0;
+                    ny += 0;
+                    break;
+            }
+        }
+        else if (mirrorX == 0 && mirrorY == 1)
+        {
+            switch (rotate)
+            {
+                case 0:
+                    nx += 0;
+                    ny += -dy;
+                    break;
+                case 90:
+                    nx += 0;
+                    ny += 0;
+                    break;
+                case 180:
+                    nx += -dx;
+                    ny += 0;
+                    break;
+                case 270:
+                    nx += -dy;
+                    ny += -dx;
+                    break;
+            }
+        }
+        else if (mirrorX == 1 && mirrorY == 1)
+        {
+            switch (rotate)
+            {
+                case 0:
+                    nx += -dx;
+                    ny += -dy;
+                    break;
+                case 90:
+                    nx += 0;
+                    ny += dx;
+                    break;
+                case 180:
+                    nx += 0;
+                    ny += 0;
+                    break;
+                case 270:
+                    nx += dy;
+                    ny += 0;
+                    break;
+            }
+        }
+        matrix.postTranslate(nx, ny);
     }
 
     public void mirror(LinearLayout parent)
     {
-        mirror = !mirror;
         float x = parent.getWidth()/2f;
         float y = parent.getHeight()/2f;
         setScale(-1, 1, x, y);
+
+        if (rotate == 90 || rotate == 270)
+        {
+            mirrorY = 1 - mirrorY;
+            return;
+        }
+        mirrorX = 1 - mirrorX;
     }
 }
