@@ -70,7 +70,7 @@
 			android:id="@+id/name"
 			android:ellipsize="start"/>
 
-		<LinearLayout
+		<ru.net.serbis.cut.pictures.view.FrameView
 			android:orientation="horizontal"
 			android:layout_width="match_parent"
 			android:layout_height="match_parent"
@@ -81,7 +81,7 @@
 				android:layout_height="match_parent"
 				android:id="@+id/img"/>
 
-		</LinearLayout>
+		</ru.net.serbis.cut.pictures.view.FrameView>
 
 		<LinearLayout
 			android:orientation="horizontal"
