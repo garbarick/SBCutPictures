@@ -92,11 +92,12 @@ public class IOTool
         return getDownloadFile(path).getAbsolutePath();
     }
 
-    public String getMusicFolderPath()
+    public String getExternalFile(String path)
     {
-        return Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_MUSIC).getAbsolutePath();
+        File dir = Environment.getExternalStorageDirectory();
+        return new File(dir, path).getAbsolutePath();
     }
-    
+
     public String getExt(String fileName)
     {
         String ext = "";

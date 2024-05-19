@@ -8,6 +8,9 @@ import android.widget.*;
 import java.io.*;
 import java.util.*;
 import ru.net.serbis.cut.pictures.*;
+import ru.net.serbis.cut.pictures.adapter.*;
+import ru.net.serbis.cut.pictures.dialog.*;
+import ru.net.serbis.cut.pictures.param.*;
 import ru.net.serbis.cut.pictures.task.*;
 import ru.net.serbis.cut.pictures.util.*;
 import ru.net.serbis.cut.pictures.view.*;
@@ -37,9 +40,7 @@ public class Main extends Activity implements TaskCallback<List<File>>, View.OnC
                 public void run()
                 {
                     img.init(Main.this);
-                    String dir = IOTool.get().getDownloadPath();
-                    UITool.get().disableAll(main);
-                    new FileListLoaderTask(Main.this).execute(dir);
+                    initImg();
                 }
             }
         );
@@ -53,6 +54,14 @@ public class Main extends Activity implements TaskCallback<List<File>>, View.OnC
             return R.layout.main_landscape;
         }
         return R.layout.main_portrait;
+    }
+
+    private void initImg()
+    {
+        img.clear();
+        String dir = Params.SOURCE_FOLDER.getValue();
+        UITool.get().disableAll(main);
+        new FileListLoaderTask(this).execute(dir);
     }
 
     @Override
@@ -79,7 +88,22 @@ public class Main extends Activity implements TaskCallback<List<File>>, View.OnC
         switch (view.getId())
         {
             case R.id.settings:
-                UITool.get().notImplementedYet();
+                new ParamsDialog(this, R.string.settings, Params.PARAMS)
+                {
+                    @Override
+                    public void ok(ParamsAdapter adapter)
+                    {
+                        super.ok(adapter);
+                        initImg();
+                    }
+
+                    @Override
+                    public void reset(ParamsAdapter adapter)
+                    {
+                        super.reset(adapter);
+                        initImg();
+                    }
+                }.show();
                 break;
             case R.id.rotate:
                 img.rotate();

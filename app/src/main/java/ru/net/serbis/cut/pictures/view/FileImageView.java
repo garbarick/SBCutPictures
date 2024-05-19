@@ -72,8 +72,9 @@ public class FileImageView extends ImageView implements View.OnTouchListener
         setFile();
     }
 
-    private void clear()
+    public void clear()
     {
+        setNameView(null);
         setImageBitmap(null);
         state.reset();
         setSizeView(0, 0);

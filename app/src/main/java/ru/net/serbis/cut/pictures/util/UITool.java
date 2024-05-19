@@ -1,6 +1,7 @@
 package ru.net.serbis.cut.pictures.util;
 
 import android.app.*;
+import android.graphics.drawable.*;
 import android.os.*;
 import android.view.*;
 import android.widget.*;
@@ -168,5 +169,12 @@ public class UITool extends Util
     public void runOnUiThread(Runnable run)
     {
         hadler.post(run);
+    }
+
+    public void setSandwitchView(Button button)
+    {
+        Drawable sandwitch = context.getResources().getDrawable(R.drawable.sandwitch);
+        sandwitch.setBounds(28, 0, 92, 64);
+        button.setCompoundDrawables(sandwitch, null, null, null);
     }
 }
