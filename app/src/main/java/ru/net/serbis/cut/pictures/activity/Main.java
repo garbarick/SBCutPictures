@@ -112,7 +112,7 @@ public class Main extends Activity implements TaskCallback<List<File>>, View.OnC
                 img.mirror();
                 break;
             case R.id.fit_width:
-                img.fitWidth();
+                img.fitWidth(true, false);
                 break;
             case R.id.previous:
                 img.previous();

@@ -6,14 +6,14 @@ import ru.net.serbis.cut.pictures.*;
 
 public class TextViewParam extends TextParam<TextView>
 {
-    public TextViewParam(int nameId, String defaultValue)
+    public TextViewParam(int nameId, String value)
     {
-        super(nameId, defaultValue);
+        super(nameId, value);
     }
 
-    public TextViewParam(String paramName, String defaultValue, boolean stored)
+    public TextViewParam(String paramName, String value, boolean stored)
     {
-        super(paramName, defaultValue, stored);
+        super(paramName, value, stored);
     }
 
     @Override

@@ -6,14 +6,14 @@ import ru.net.serbis.cut.pictures.*;
 
 public class EditTextParam extends TextParam<EditText>
 {
-    public EditTextParam(int nameId, String defaultValue)
+    public EditTextParam(int nameId, String value)
     {
-        super(nameId, defaultValue);
+        super(nameId, value);
     }
 
-    public EditTextParam(String paramName, String defaultValue, boolean stored)
+    public EditTextParam(String paramName, String value, boolean stored)
     {
-        super(paramName, defaultValue, stored);
+        super(paramName, value, stored);
     }
 
     @Override

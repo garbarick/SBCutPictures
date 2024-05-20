@@ -11,6 +11,7 @@ import java.util.*;
 import ru.net.serbis.cut.pictures.*;
 import ru.net.serbis.cut.pictures.bean.*;
 import ru.net.serbis.cut.pictures.util.*;
+import ru.net.serbis.cut.pictures.param.*;
 
 public class FileImageView extends ImageView implements View.OnTouchListener
 {
@@ -18,10 +19,9 @@ public class FileImageView extends ImageView implements View.OnTouchListener
     private TextView widthView;
     private TextView heightView;
     private TextView scaleView;
-    private LinearLayout parent;
+    private FrameView parent;
 
     private List<File> files = new ArrayList<File>();
-    private int position;
     private MatrixState state = new MatrixState(this);
 
     public FileImageView(Context context, AttributeSet attrs)
@@ -61,14 +61,17 @@ public class FileImageView extends ImageView implements View.OnTouchListener
         widthView = UITool.get().findView(context, R.id.width);
         heightView = UITool.get().findView(context, R.id.height);
         scaleView = UITool.get().findView(context, R.id.scale);
-        parent = (LinearLayout) getParent();
+        parent = (FrameView) getParent();
     }
 
     public void setFiles(List<File> files)
     {
         this.files.clear();
         this.files.addAll(files);
-        position = 0;
+        if (Params.POS.getValue() > files.size() - 1)
+        {
+            Params.POS.saveValue(0);
+        }
         setFile();
     }
 
@@ -87,23 +90,27 @@ public class FileImageView extends ImageView implements View.OnTouchListener
         {
             return;
         }
-        File file = files.get(position);
+        File file = files.get(Params.POS.getValue());
         setNameView(file.getAbsolutePath());
         Bitmap bitmap = BitmapFactory.decodeFile(file.getAbsolutePath());
         setImageBitmap(bitmap);
         setSizeView(bitmap.getWidth(), bitmap.getHeight());
-        fitWidth();
+        fitWidth(true, true);
     }
 
     public void next()
     {
-        position = Math.min(files.size() - 1, ++ position);
+        Params.POS.saveValue(
+            Math.min(
+                files.size() - 1,
+                Params.POS.getValue() + 1));
         setFile();
     }
 
     public void previous()
     {
-        position = Math.max(0, -- position);
+        Params.POS.saveValue(
+            Math.max(0, Params.POS.getValue() - 1));
         setFile();
     }
 
@@ -126,13 +133,13 @@ public class FileImageView extends ImageView implements View.OnTouchListener
     public void rotate()
     {
         state.rotate(parent);
-        fitWidth();
+        fitWidth(true, true);
     }
 
-    public void fitWidth()
+    public void fitWidth(boolean moveX, boolean moveY)
     {
         state.fitWidth(parent);
-        state.toCenter();
+        state.toCenter(moveX, moveY);
         state.apply();
     }
 

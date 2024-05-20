@@ -12,6 +12,7 @@ public interface Params
     EditTextParam NAME_PATTERN = new EditTextParam(R.string.name_pattern, "yyyy-MM-dd_HH-mm-ss");
     ImageTypeParam IMAGE_FORMAT = new ImageTypeParam();
     StringsParam CATEGORIES = new StringsParam(R.string.categories);
+    NumberParam POS = new NumberParam(R.string.pos, 0, false);
 
     Param[] PARAMS = new Param[]{
         SOURCE_FOLDER,

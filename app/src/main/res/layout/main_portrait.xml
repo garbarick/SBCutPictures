@@ -19,18 +19,39 @@
 			android:id="@+id/settings"/>
 
 		<ImageButton
-			android:layout_width="match_parent"
-			android:layout_height="match_parent"
-			android:src="@android:drawable/ic_menu_rotate"
-			android:layout_weight="1"
-			android:id="@+id/rotate"/>
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@android:drawable/ic_media_previous"
+            android:layout_weight="1"
+            android:id="@+id/previous"/>
 
-		<ImageButton
-			android:layout_width="match_parent"
-			android:layout_height="match_parent"
-			android:src="@drawable/mirror"
-			android:layout_weight="1"
-			android:id="@+id/mirror"
+        <ImageButton
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@android:drawable/ic_media_next"
+            android:layout_weight="1"
+			android:id="@+id/next"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="50dp">
+
+        <ImageButton
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@android:drawable/ic_menu_rotate"
+            android:layout_weight="1"
+            android:id="@+id/rotate"/>
+
+        <ImageButton
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/mirror"
+            android:layout_weight="1"
+            android:id="@+id/mirror"
 			android:scaleType="centerInside"/>
 
 		<ImageButton
@@ -40,20 +61,6 @@
 			android:scaleType="centerInside"
 			android:layout_width="match_parent"
 			android:layout_height="match_parent"/>
-
-		<ImageButton
-			android:layout_width="match_parent"
-			android:layout_height="match_parent"
-			android:src="@android:drawable/ic_media_previous"
-			android:layout_weight="1"
-			android:id="@+id/previous"/>
-
-		<ImageButton
-			android:layout_width="match_parent"
-			android:layout_height="match_parent"
-			android:src="@android:drawable/ic_media_next"
-			android:layout_weight="1"
-			android:id="@+id/next"/>
 
 	</LinearLayout>
 

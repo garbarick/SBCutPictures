@@ -4,14 +4,14 @@ import android.view.*;
 
 public abstract class TextParam<V extends View> extends Param<String, V>
 {
-    public TextParam(int nameId, String defaultValue)
+    public TextParam(int nameId, String value)
     {
-        super(nameId, defaultValue);
+        super(nameId, value);
     }
 
-    public TextParam(String paramName, String defaultValue, boolean stored)
+    public TextParam(String paramName, String value, boolean stored)
     {
-        super(paramName, defaultValue, stored);
+        super(paramName, value, stored);
     }
 
     @Override

@@ -8,15 +8,15 @@ public abstract class SpinnerParam<T> extends Param<T, Spinner>
 {
     protected T[] values;
 
-    public SpinnerParam(int nameId, T defaultValue, T[] values)
+    public SpinnerParam(int nameId, T value, T[] values)
     {
-        super(nameId, defaultValue);
+        super(nameId, value);
         this.values = values;
     }
 
-    public SpinnerParam(String paramName, T defaultValue, boolean stored, T[] values)
+    public SpinnerParam(String paramName, T value, boolean stored, T[] values)
     {
-        super(paramName, defaultValue, stored);
+        super(paramName, value, stored);
         this.values = values;
     }
 

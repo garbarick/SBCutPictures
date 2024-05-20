@@ -7,14 +7,14 @@ import ru.net.serbis.cut.pictures.util.*;
 
 public class NumberParam extends Param<Integer, EditText>
 {
-    public NumberParam(int nameId, Integer defaultValue)
+    public NumberParam(int nameId, Integer value)
     {
-        super(nameId, defaultValue);
+        super(nameId, value);
     }
 
-    public NumberParam(String paramName, Integer defaultValue, boolean stored)
+    public NumberParam(int nameId, Integer value, boolean stored)
     {
-        super(paramName, defaultValue, stored);
+        super(nameId, null, value, stored);
     }
 
     @Override
@@ -46,7 +46,7 @@ public class NumberParam extends Param<Integer, EditText>
         catch (Exception e)
         {
             Log.error(this, e);
-            return defaultValue;
+            return this.value;
         }
     }
 

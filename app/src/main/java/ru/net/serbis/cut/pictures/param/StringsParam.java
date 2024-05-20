@@ -54,7 +54,7 @@ public class StringsParam extends Param<Set<String>, Button>
         {
             return Preferences.get().getStringSet(paramName);
         }
-        return defaultValue;
+        return value;
     }
 
     @Override

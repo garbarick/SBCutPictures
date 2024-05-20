@@ -11,32 +11,32 @@ public abstract class Param<T, V extends View>
     protected String name;
     protected String paramName;
     protected int nameId;
-    protected T defaultValue;
+    protected T value;
     protected Activity context;
     protected boolean stored;
 
-    public Param(int nameId, String paramName, T defaultValue, boolean stored)
+    public Param(int nameId, String paramName, T value, boolean stored)
     {
         this.nameId = nameId;
         this.name = paramName;
         this.paramName = paramName;
-        this.defaultValue = defaultValue;
+        this.value = value;
         this.stored = stored;
     }
 
-    public Param(int nameId, String paramName, T defaultValue)
+    public Param(int nameId, String paramName, T value)
     {
-        this(nameId, paramName, defaultValue, true);
+        this(nameId, paramName, value, true);
     }
 
-    public Param(int nameId, T defaultValue)
+    public Param(int nameId, T value)
     {
-        this(nameId, null, defaultValue);
+        this(nameId, null, value);
     }
 
-    public Param(String paramName, T defaultValue, boolean stored)
+    public Param(String paramName, T value, boolean stored)
     {
-        this(0, paramName, defaultValue, stored);
+        this(0, paramName, value, stored);
     }
 
     public String getName()
@@ -74,7 +74,9 @@ public abstract class Param<T, V extends View>
         {
             String data = value == null ? null : typeToString(value);
             Preferences.get().setString(paramName, data);
+            return;
         }
+        this.value = value;
     }
 
     public abstract String typeToString(T value);
@@ -83,9 +85,9 @@ public abstract class Param<T, V extends View>
     {
         if (stored)
         {
-            return stringToType(Preferences.get().getString(paramName, typeToString(defaultValue)));
+            return stringToType(Preferences.get().getString(paramName, typeToString(value)));
         }
-        return defaultValue;
+        return value;
     }
 
     public abstract T stringToType(String value);

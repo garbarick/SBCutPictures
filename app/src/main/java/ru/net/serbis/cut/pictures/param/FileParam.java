@@ -14,17 +14,17 @@ public class FileParam extends TextViewParam
     private boolean onlyFile;
     private String ext;
 
-    public FileParam(int nameId, String defaultValue, boolean onlyFolder, boolean onlyFile, String ext)
+    public FileParam(int nameId, String value, boolean onlyFolder, boolean onlyFile, String ext)
     {
-        super(nameId, defaultValue);
+        super(nameId, value);
         this.onlyFolder = onlyFolder;
         this.onlyFile = onlyFile;
         this.ext = ext;
     }
 
-    public FileParam(int nameId, String defaultValue, boolean onlyFolder, boolean onlyFile)
+    public FileParam(int nameId, String value, boolean onlyFolder, boolean onlyFile)
     {
-        this(nameId, defaultValue, onlyFolder, onlyFile, null);
+        this(nameId, value, onlyFolder, onlyFile, null);
     }
 
     @Override

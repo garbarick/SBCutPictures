@@ -46,13 +46,18 @@ public class MatrixState
             return;
         }
         matrix.set(stored);
-        matrix.postTranslate(event.getX() - start.x, event.getY() - start.y);
+        translate(event.getX() - start.x, event.getY() - start.y);
     }
 
     public void apply()
     {
         view.setImageMatrix(matrix);
         view.setScaleView(getScale());
+    }
+
+    public void translate(float x, float y)
+    {
+        matrix.postTranslate(x, y);
     }
 
     public void reset()
@@ -161,20 +166,20 @@ public class MatrixState
         matrix.postScale(sx, sy, px, py);
     }
 
-    public void rotate(LinearLayout parent)
+    public void rotate(FrameView parent)
     {
         rotate = rotate == 270 ? 0 : rotate + 90;
         rotate(parent, 90);
     }
     
-    public void rotate(LinearLayout parent, int degrees)
+    public void rotate(FrameView parent, int degrees)
     {
         float x = parent.getWidth()/2f;
         float y = parent.getHeight()/2f;
         matrix.postRotate(degrees, x, y);
     }
 
-    public void fitWidth(LinearLayout parent)
+    public void fitWidth(FrameView parent)
     {
         Rect rect = view.getDrawable().getBounds();
         float imageWidth = rect.width();
@@ -196,7 +201,7 @@ public class MatrixState
         return v2;
     }
     
-    public void toCenter()
+    public void toCenter(boolean moveX, boolean moveY)
     {
         float[] values = getValues();
         float x = values[Matrix.MTRANS_X];
@@ -300,10 +305,12 @@ public class MatrixState
                     break;
             }
         }
-        matrix.postTranslate(nx, ny);
+        nx = moveX ? nx : 0;
+        ny = moveY ? ny : 0;
+        translate(nx, ny);
     }
 
-    public void mirror(LinearLayout parent)
+    public void mirror(FrameView parent)
     {
         float x = parent.getWidth()/2f;
         float y = parent.getHeight()/2f;
