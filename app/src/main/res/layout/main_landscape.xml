@@ -16,23 +16,43 @@
 			android:layout_height="match_parent"
 			android:src="@android:drawable/ic_menu_manage"
 			android:layout_weight="1"
-			android:id="@+id/settings"/>
+			android:id="@+id/settings"
+            android:scaleType="centerInside"/>
+
+        <ImageButton
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@android:drawable/ic_menu_save"
+            android:layout_weight="1"
+			android:id="@+id/save"
+            android:scaleType="centerInside"/>
+
+        <ImageButton
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/save_as"
+            android:layout_weight="1"
+			android:id="@+id/save_as"
+            android:scaleType="centerInside"/>
 
         <ImageButton
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:src="@android:drawable/ic_media_previous"
             android:layout_weight="1"
-            android:id="@+id/previous"/>
+            android:id="@+id/previous"
+            android:scaleType="centerInside"/>
 
         <ImageButton
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:src="@android:drawable/ic_media_next"
             android:layout_weight="1"
-			android:id="@+id/next"/>
+			android:id="@+id/next"
+            android:scaleType="centerInside"/>
 
     </LinearLayout>
+
     <LinearLayout
             android:orientation="vertical"
             android:layout_width="50dp"
@@ -43,7 +63,8 @@
 			android:layout_height="match_parent"
 			android:src="@android:drawable/ic_menu_rotate"
 			android:layout_weight="1"
-			android:id="@+id/rotate"/>
+			android:id="@+id/rotate"
+            android:scaleType="centerInside"/>
 
 		<ImageButton
 			android:layout_width="match_parent"

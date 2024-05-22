@@ -16,42 +16,62 @@
 			android:layout_height="match_parent"
 			android:src="@android:drawable/ic_menu_manage"
 			android:layout_weight="1"
-			android:id="@+id/settings"/>
+			android:id="@+id/settings"
+            android:scaleType="centerInside"/>
 
 		<ImageButton
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:src="@android:drawable/ic_media_previous"
-            android:layout_weight="1"
-            android:id="@+id/previous"/>
+			android:layout_width="match_parent"
+			android:layout_height="match_parent"
+			android:src="@android:drawable/ic_menu_save"
+			android:layout_weight="1"
+			android:id="@+id/save"
+            android:scaleType="centerInside"/>
 
-        <ImageButton
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:src="@android:drawable/ic_media_next"
-            android:layout_weight="1"
-			android:id="@+id/next"/>
+		<ImageButton
+			android:layout_width="match_parent"
+			android:layout_height="match_parent"
+			android:src="@drawable/save_as"
+			android:layout_weight="1"
+			android:id="@+id/save_as"
+            android:scaleType="centerInside"/>
 
-    </LinearLayout>
+		<ImageButton
+			android:layout_width="match_parent"
+			android:layout_height="match_parent"
+			android:src="@android:drawable/ic_media_previous"
+			android:layout_weight="1"
+			android:id="@+id/previous"
+            android:scaleType="centerInside"/>
 
-    <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="50dp">
+		<ImageButton
+			android:layout_width="match_parent"
+			android:layout_height="match_parent"
+			android:src="@android:drawable/ic_media_next"
+			android:layout_weight="1"
+			android:id="@+id/next"
+            android:scaleType="centerInside"/>
 
-        <ImageButton
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:src="@android:drawable/ic_menu_rotate"
-            android:layout_weight="1"
-            android:id="@+id/rotate"/>
+	</LinearLayout>
 
-        <ImageButton
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:src="@drawable/mirror"
-            android:layout_weight="1"
-            android:id="@+id/mirror"
+	<LinearLayout
+		android:orientation="horizontal"
+		android:layout_width="match_parent"
+		android:layout_height="50dp">
+
+		<ImageButton
+			android:layout_width="match_parent"
+			android:layout_height="match_parent"
+			android:src="@android:drawable/ic_menu_rotate"
+			android:layout_weight="1"
+			android:id="@+id/rotate"
+            android:scaleType="centerInside"/>
+
+		<ImageButton
+			android:layout_width="match_parent"
+			android:layout_height="match_parent"
+			android:src="@drawable/mirror"
+			android:layout_weight="1"
+			android:id="@+id/mirror"
 			android:scaleType="centerInside"/>
 
 		<ImageButton

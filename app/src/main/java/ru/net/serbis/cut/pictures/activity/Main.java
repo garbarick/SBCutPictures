@@ -120,6 +120,9 @@ public class Main extends Activity implements TaskCallback<List<File>>, View.OnC
             case R.id.next:
                 img.next();
                 break;
+            default:
+                UITool.get().notImplementedYet();
+                break;
         }
     }
 }
