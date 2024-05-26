@@ -2,22 +2,22 @@ package ru.net.serbis.cut.pictures.param;
 
 import ru.net.serbis.cut.pictures.*;
 
-public class ImageTypeParam extends SpinnerParam<String>
+public class ImageTypeParam extends SpinnerParam<SaveImgFormat>
 {
     public ImageTypeParam()
     {
-        super(R.string.image_format, Constants._EXTENSIONS[0], Constants._EXTENSIONS);
+        super(R.string.image_format, SaveImgFormat.jpg, SaveImgFormat.class.getEnumConstants());
     }
 
     @Override
-    public String typeToString(String value)
+    public String typeToString(SaveImgFormat value)
     {
-        return value;
+        return value.name();
     }
 
     @Override
-    public String stringToType(String value)
+    public SaveImgFormat stringToType(String value)
     {
-        return value;
+        return SaveImgFormat.valueOf(value);
     }
 }

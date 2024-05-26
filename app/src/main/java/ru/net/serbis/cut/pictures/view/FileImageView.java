@@ -10,8 +10,8 @@ import java.io.*;
 import java.util.*;
 import ru.net.serbis.cut.pictures.*;
 import ru.net.serbis.cut.pictures.bean.*;
-import ru.net.serbis.cut.pictures.util.*;
 import ru.net.serbis.cut.pictures.param.*;
+import ru.net.serbis.cut.pictures.util.*;
 
 public class FileImageView extends ImageView implements View.OnTouchListener
 {
@@ -86,16 +86,25 @@ public class FileImageView extends ImageView implements View.OnTouchListener
     private void setFile()
     {
         clear();
-        if (files.isEmpty())
+        Bitmap bitmap = getBitmap();
+        if (bitmap == null)
         {
             return;
         }
-        File file = files.get(Params.POS.getValue());
-        setNameView(file.getAbsolutePath());
-        Bitmap bitmap = BitmapFactory.decodeFile(file.getAbsolutePath());
         setImageBitmap(bitmap);
         setSizeView(bitmap.getWidth(), bitmap.getHeight());
         fitWidth(true, true);
+    }
+
+    private Bitmap getBitmap()
+    {
+        if (files.isEmpty())
+        {
+            return null;
+        }
+        File file = files.get(Params.POS.getValue());
+        setNameView(file.getAbsolutePath());
+        return BitmapFactory.decodeFile(file.getAbsolutePath());
     }
 
     public void next()
@@ -147,5 +156,16 @@ public class FileImageView extends ImageView implements View.OnTouchListener
     {
         state.mirror(parent);
         state.apply();
+    }
+
+    public void save()
+    {
+        Bitmap bitmap = getBitmap();
+        if (bitmap == null)
+        {
+            return;
+        }
+        RectF rect = new RectF(0, 0, parent.getWidth(), parent.getHeight());
+        new ImageSaver(bitmap, state, rect).save();
     }
 }

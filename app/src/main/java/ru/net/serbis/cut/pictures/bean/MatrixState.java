@@ -2,7 +2,6 @@ package ru.net.serbis.cut.pictures.bean;
 
 import android.graphics.*;
 import android.view.*;
-import android.widget.*;
 import ru.net.serbis.cut.pictures.view.*;
 
 public class MatrixState
@@ -25,6 +24,11 @@ public class MatrixState
     public Matrix getMatrix()
     {
         return matrix;
+    }
+
+    public int getRotate()
+    {
+        return rotate;
     }
 
     public void cancel()
@@ -137,7 +141,7 @@ public class MatrixState
         return text.toString();
     }
 
-    private float[] getValues()
+    public float[] getValues()
     {
         float[] values = new float[9];
         matrix.getValues(values);

@@ -82,28 +82,35 @@ public class Main extends Activity implements TaskCallback<List<File>>, View.OnC
         img.setFiles(result);
     }
 
+    private class Settings extends ParamsDialog
+    {
+        private Settings(Activity context)
+        {
+            super(context, R.string.settings, Params.PARAMS);
+        }
+
+        @Override
+        public void ok(ParamsAdapter adapter)
+        {
+            super.ok(adapter);
+            initImg();
+        }
+
+        @Override
+        public void reset(ParamsAdapter adapter)
+        {
+            super.reset(adapter);
+            initImg();
+        }
+    }
+
     @Override
     public void onClick(View view)
     {
         switch (view.getId())
         {
             case R.id.settings:
-                new ParamsDialog(this, R.string.settings, Params.PARAMS)
-                {
-                    @Override
-                    public void ok(ParamsAdapter adapter)
-                    {
-                        super.ok(adapter);
-                        initImg();
-                    }
-
-                    @Override
-                    public void reset(ParamsAdapter adapter)
-                    {
-                        super.reset(adapter);
-                        initImg();
-                    }
-                }.show();
+                new Settings(this).show();
                 break;
             case R.id.rotate:
                 img.rotate();
@@ -119,6 +126,9 @@ public class Main extends Activity implements TaskCallback<List<File>>, View.OnC
                 break;
             case R.id.next:
                 img.next();
+                break;
+            case R.id.save:
+                img.save();
                 break;
             default:
                 UITool.get().notImplementedYet();

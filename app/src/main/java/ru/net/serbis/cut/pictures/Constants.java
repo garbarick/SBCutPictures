@@ -8,6 +8,7 @@ public interface Constants
     String THROWABLE = "THROWABLE";
     String TITLE = "TITLE";
     int ERROR_LOAD_FILE_LIST = 401;
+    int ERROR_SAVE_FILE = 402;
     String[] _EXTENSIONS = new String[]
     {
         "png",
