@@ -50,7 +50,7 @@ public class ImageSaver
         try
         {
             out = new FileOutputStream(file);
-            bitmap.compress(format.getFormat(), 100, out);
+            bitmap.compress(format.getFormat(), format.getQuality(), out);
         }
         catch (Exception e)
         {

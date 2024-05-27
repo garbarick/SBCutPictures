@@ -18,4 +18,15 @@ public enum SaveImgFormat
     {
         return format;
     }
+    
+    public int getQuality()
+    {
+        switch (this)
+        {
+            case jpg:
+                return Params.JPG_QUALITY.getValue();
+            default:
+                return 100;
+        }
+    }
 }
