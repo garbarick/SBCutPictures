@@ -86,25 +86,30 @@ public class FileImageView extends ImageView implements View.OnTouchListener
     private void setFile()
     {
         clear();
-        Bitmap bitmap = getBitmap();
-        if (bitmap == null)
+        File file = getFile();
+        if (file == null)
         {
             return;
         }
+        Bitmap bitmap = getBitmap(file);
         setImageBitmap(bitmap);
         setSizeView(bitmap.getWidth(), bitmap.getHeight());
         fitWidth(true, true);
     }
 
-    private Bitmap getBitmap()
+    private Bitmap getBitmap(File file)
+    {
+        setNameView(file.getAbsolutePath());
+        return BitmapFactory.decodeFile(file.getAbsolutePath());
+    }
+    
+    private File getFile()
     {
         if (files.isEmpty())
         {
             return null;
         }
-        File file = files.get(Params.POS.getValue());
-        setNameView(file.getAbsolutePath());
-        return BitmapFactory.decodeFile(file.getAbsolutePath());
+        return files.get(Params.POS.getValue());
     }
 
     public void next()
@@ -160,12 +165,24 @@ public class FileImageView extends ImageView implements View.OnTouchListener
 
     public void save()
     {
-        Bitmap bitmap = getBitmap();
-        if (bitmap == null)
+        File file = getFile();
+        if (file == null)
         {
             return;
         }
+        Bitmap bitmap = getBitmap(file);
         RectF rect = new RectF(0, 0, parent.getWidth(), parent.getHeight());
-        new ImageSaver(bitmap, state, rect).save();
+        File result = new ImageSaver(bitmap, state, rect).save();
+        if (result == null)
+        {
+            return;
+        }
+        result.setLastModified(file.lastModified());
+        File backup = new File(Params.BACKUP_FOLDER.getValue(), file.getName());
+        if (IOTool.get().moveFileQuietly(file, backup))
+        {
+            files.set(Params.POS.getValue(), result);
+            setFile();
+        }
     }
 }

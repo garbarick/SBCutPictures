@@ -27,12 +27,12 @@ public class ImageSaver
         this.sourceRect = sourceRect;
     }
     
-    public void save()
+    public File save()
     {
         Matrix matrix = getMatrix();
         Bitmap bitmap = convert(matrix);
         File file = getFile();
-        save(bitmap, file);
+        return save(bitmap, file);
     }
 
     private Bitmap convert(Matrix matrix)
@@ -44,18 +44,20 @@ public class ImageSaver
         return result;
     }
 
-    private void save(Bitmap bitmap, File file)
+    private File save(Bitmap bitmap, File file)
     {
         OutputStream out = null;
         try
         {
             out = new FileOutputStream(file);
             bitmap.compress(format.getFormat(), format.getQuality(), out);
+            return file;
         }
         catch (Exception e)
         {
             Log.error(this, e);
             UITool.get().toast(Constants.ERROR_SAVE_FILE, e.getMessage());
+            return null;
         }
         finally
         {

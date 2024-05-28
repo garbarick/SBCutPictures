@@ -35,6 +35,14 @@
 			android:id="@+id/save_as"
             android:scaleType="centerInside"/>
 
+        <ImageButton
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@android:drawable/ic_menu_delete"
+            android:layout_weight="1"
+            android:id="@+id/delete"
+            android:scaleType="centerInside"/>
+
 		<ImageButton
 			android:layout_width="match_parent"
 			android:layout_height="match_parent"

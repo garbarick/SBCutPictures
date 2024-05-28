@@ -9,6 +9,7 @@ public interface Constants
     String TITLE = "TITLE";
     int ERROR_LOAD_FILE_LIST = 401;
     int ERROR_SAVE_FILE = 402;
+    int ERROR_MOVE_FILE = 403;
     String[] _EXTENSIONS = new String[]
     {
         "png",

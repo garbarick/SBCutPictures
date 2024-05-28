@@ -34,11 +34,11 @@ public class IOTool
         {}
     }
 
-    public void copy(InputStream is, OutputStream os, boolean closeIn, boolean closeOut, int bufferSize) throws Exception
+    public void copy(InputStream is, OutputStream os, boolean closeIn, boolean closeOut) throws Exception
     {
         try
         {
-            byte[] buf = new byte[bufferSize];
+            byte[] buf = new byte[10240];
             int len;
             while ((len = is.read(buf)) > 0)
             {
@@ -58,16 +58,16 @@ public class IOTool
         }
     }
     
-    public boolean copyQuietly(InputStream is, OutputStream os, boolean closeIn, boolean closeOut, int bufferSize)
+    public boolean copyQuietly(InputStream is, OutputStream os, boolean closeIn, boolean closeOut)
     {
         try
         {
-            copy(is, os, closeIn, closeOut, bufferSize);
+            copy(is, os, closeIn, closeOut);
             return true;
         }
         catch (Exception e)
         {
-            Log.error(new IOTool(), e);
+            Log.error(this, e);
             return false;
         }
     }
@@ -119,22 +119,24 @@ public class IOTool
         return checkExt(file.getName());
 	}
 
-    public void moveFile(File from, File to, int bufferSize) throws Exception
+    public void moveFile(File from, File to) throws Exception
     {
-        copy(new FileInputStream(from), new FileOutputStream(to), true, true, bufferSize);
+        copy(new FileInputStream(from), new FileOutputStream(to), true, true);
+        to.setLastModified(from.lastModified());
         from.delete();
     }
 
-    public boolean moveFileQuietly(File from, File to, int bufferSize)
+    public boolean moveFileQuietly(File from, File to)
     {
         try
         {
-            moveFile(from, to, bufferSize);
+            moveFile(from, to);
             return true;
         }
         catch (Exception e)
         {
-            Log.error(new IOTool(), e);
+            Log.error(this, e);
+            UITool.get().toast(Constants.ERROR_MOVE_FILE, e.getMessage());
             return false;
         }
     }
