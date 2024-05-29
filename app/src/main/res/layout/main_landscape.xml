@@ -46,18 +46,10 @@
         <ImageButton
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:src="@android:drawable/ic_media_previous"
+            android:src="@drawable/undo"
             android:layout_weight="1"
-            android:id="@+id/previous"
-            android:scaleType="centerInside"/>
-
-        <ImageButton
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:src="@android:drawable/ic_media_next"
-            android:layout_weight="1"
-			android:id="@+id/next"
-            android:scaleType="centerInside"/>
+            android:id="@+id/undo"
+			android:scaleType="centerInside"/>
 
     </LinearLayout>
 
@@ -89,6 +81,22 @@
 			android:scaleType="centerInside"
 			android:layout_width="match_parent"
 			android:layout_height="match_parent"/>
+
+        <ImageButton
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@android:drawable/ic_media_previous"
+            android:layout_weight="1"
+            android:id="@+id/previous"
+            android:scaleType="centerInside"/>
+
+        <ImageButton
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@android:drawable/ic_media_next"
+            android:layout_weight="1"
+            android:id="@+id/next"
+            android:scaleType="centerInside"/>
 
 	</LinearLayout>
 

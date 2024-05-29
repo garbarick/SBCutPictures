@@ -22,6 +22,7 @@ public class FileImageView extends ImageView implements View.OnTouchListener
     private FrameView parent;
 
     private List<File> files = new ArrayList<File>();
+    private List<File> undoFiles = new ArrayList<File>();
     private MatrixState state = new MatrixState(this);
 
     public FileImageView(Context context, AttributeSet attrs)
@@ -170,18 +171,77 @@ public class FileImageView extends ImageView implements View.OnTouchListener
         {
             return;
         }
+        File result = save(file);
+        if (result == null)
+        {
+            return;
+        }
+        files.set(Params.POS.getValue(), result);
+        deleteFileWithBackup(file);
+    }
+
+    private File save(File file)
+    {
         Bitmap bitmap = getBitmap(file);
         RectF rect = new RectF(0, 0, parent.getWidth(), parent.getHeight());
         File result = new ImageSaver(bitmap, state, rect).save();
         if (result == null)
         {
-            return;
+            return null;
         }
         result.setLastModified(file.lastModified());
+        return result;
+    }
+
+    private void deleteFileWithBackup(File file)
+    {
         File backup = new File(Params.BACKUP_FOLDER.getValue(), file.getName());
         if (IOTool.get().moveFileQuietly(file, backup))
         {
-            files.set(Params.POS.getValue(), result);
+            undoFiles.add(backup);
+            setFile();
+        }
+    }
+
+    public void saveAs()
+    {
+        File file = getFile();
+        if (file == null)
+        {
+            return;
+        }
+        File result = save(file);
+        if (result == null)
+        {
+            return;
+        }
+        files.add(Params.POS.getValue(), result);
+    }
+
+    public void delete()
+    {
+        File file = getFile();
+        if (file == null)
+        {
+            return;
+        }
+        files.remove(file);
+        deleteFileWithBackup(file);
+    }
+
+    public void undo()
+    {
+        if (undoFiles.isEmpty())
+        {
+            return;
+        }
+        int last = undoFiles.size() - 1;
+        File undoFile = undoFiles.get(last);
+        File file = new File(Params.SOURCE_FOLDER.getValue(), undoFile.getName());
+        if (IOTool.get().moveFileQuietly(undoFile, file))
+        {
+            files.add(Params.POS.getValue(), file);
+            undoFiles.remove(last);
             setFile();
         }
     }

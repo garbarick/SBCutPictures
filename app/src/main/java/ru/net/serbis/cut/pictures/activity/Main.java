@@ -130,6 +130,15 @@ public class Main extends Activity implements TaskCallback<List<File>>, View.OnC
             case R.id.save:
                 img.save();
                 break;
+            case R.id.save_as:
+                img.saveAs();
+                break;
+            case R.id.delete:
+                img.delete();
+                break;
+            case R.id.undo:
+                img.undo();
+                break;
             default:
                 UITool.get().notImplementedYet();
                 break;
