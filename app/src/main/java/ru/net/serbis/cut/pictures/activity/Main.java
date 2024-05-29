@@ -15,11 +15,9 @@ import ru.net.serbis.cut.pictures.task.*;
 import ru.net.serbis.cut.pictures.util.*;
 import ru.net.serbis.cut.pictures.view.*;
 
-public class Main extends Activity implements TaskCallback<List<File>>, View.OnClickListener
+public class Main extends Activity implements TaskCallback<List<File>>, View.OnClickListener, PopupMenu.OnMenuItemClickListener
 {
-    private LinearLayout main;
-    private FileImageView img;
-    private ProgressBar progress;
+    private ViewsHolder holder = new ViewsHolder();
 
     @Override
     protected void onCreate(Bundle state)
@@ -28,18 +26,17 @@ public class Main extends Activity implements TaskCallback<List<File>>, View.OnC
         SysTool.get().initPermissions(this);
         setContentView(getLayout());
 
-        main = UITool.get().findView(this, R.id.main);
-        img = UITool.get().findView(this, R.id.img);
-        progress = UITool.get().findView(this, R.id.progress);
-        UITool.get().initAllButtons(main, this);
+        holder.init(this);
+        UITool.get().initAllButtons(holder.main, this);
+        holder.categoryMenu.setOnMenuItemClickListener(this);
 
-        img.post(
+        holder.img.post(
             new Runnable() 
             {
                 @Override
                 public void run()
                 {
-                    img.init(Main.this);
+                    holder.img.init(holder);
                     initImg();
                 }
             }
@@ -58,28 +55,28 @@ public class Main extends Activity implements TaskCallback<List<File>>, View.OnC
 
     private void initImg()
     {
-        img.clear();
+        holder.img.clear();
         String dir = Params.SOURCE_FOLDER.getValue();
-        UITool.get().disableAll(main);
+        UITool.get().disableAll(holder.main);
         new FileListLoaderTask(this).execute(dir);
     }
 
     @Override
     public void progress(int progress)
     {
-        this.progress.setProgress(progress);
+        holder.progress.setProgress(progress);
     }
 
     @Override
     public void onResult(List<File> result, TaskError error)
     {
-        UITool.get().enableAll(main);
+        UITool.get().enableAll(holder.main);
         UITool.get().toast(error);
         if (result == null)
         {
             return;
         }
-        img.setFiles(result);
+        holder.img.setFiles(result);
     }
 
     private class Settings extends ParamsDialog
@@ -93,6 +90,7 @@ public class Main extends Activity implements TaskCallback<List<File>>, View.OnC
         public void ok(ParamsAdapter adapter)
         {
             super.ok(adapter);
+            holder.updateCategories();
             initImg();
         }
 
@@ -100,6 +98,7 @@ public class Main extends Activity implements TaskCallback<List<File>>, View.OnC
         public void reset(ParamsAdapter adapter)
         {
             super.reset(adapter);
+            holder.updateCategories();
             initImg();
         }
     }
@@ -113,38 +112,48 @@ public class Main extends Activity implements TaskCallback<List<File>>, View.OnC
                 new Settings(this).show();
                 break;
             case R.id.rotate:
-                img.rotate();
+                holder.img.rotate();
                 break;
             case R.id.mirror:
-                img.mirror();
+                holder.img.mirror();
                 break;
             case R.id.fit_width:
-                img.fitWidth(true, false);
+                holder.img.fitWidth(true, false);
                 break;
             case R.id.previous:
-                img.previous();
+                holder.img.previous();
                 break;
             case R.id.next:
-                img.next();
+                holder.img.next();
                 break;
             case R.id.save:
-                img.save();
+                holder.img.save();
                 break;
             case R.id.save_as:
-                img.saveAs();
+                holder.img.saveAs();
                 break;
             case R.id.delete:
-                img.delete();
+                holder.img.delete();
                 break;
             case R.id.undo:
-                img.undo();
+                holder.img.undo();
                 break;
             case R.id.cleanup_backup:
-                img.cleanupBackup();
+                holder.img.cleanupBackup();
+                break;
+            case R.id.category:
+                holder.categoryMenu.show();
                 break;
             default:
                 UITool.get().notImplementedYet();
                 break;
         }
+    }
+
+    @Override
+    public boolean onMenuItemClick(MenuItem item)
+    {
+        holder.checkCategory(item);
+        return true;
     }
 }

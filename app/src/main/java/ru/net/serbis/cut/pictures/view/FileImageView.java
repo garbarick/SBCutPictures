@@ -1,6 +1,5 @@
 package ru.net.serbis.cut.pictures.view;
 
-import android.app.*;
 import android.content.*;
 import android.graphics.*;
 import android.util.*;
@@ -8,24 +7,17 @@ import android.view.*;
 import android.widget.*;
 import java.io.*;
 import java.util.*;
-import ru.net.serbis.cut.pictures.*;
 import ru.net.serbis.cut.pictures.bean.*;
 import ru.net.serbis.cut.pictures.param.*;
+import ru.net.serbis.cut.pictures.task.*;
 import ru.net.serbis.cut.pictures.util.*;
 
-public class FileImageView extends ImageView implements View.OnTouchListener
+public class FileImageView extends ImageView implements View.OnTouchListener, TaskCallback<Boolean>
 {
-    private TextView nameView;
-    private TextView widthView;
-    private TextView heightView;
-    private TextView scaleView;
-    private FrameView parent;
-    private TextView fileSizeView;
-    private TextView countAllView;
-
+    private ViewsHolder holder;
     private List<File> files = new ArrayList<File>();
     private List<File> undoFiles = new ArrayList<File>();
-    private MatrixState state = new MatrixState(this);
+    private MatrixState state;
 
     public FileImageView(Context context, AttributeSet attrs)
     {
@@ -58,15 +50,23 @@ public class FileImageView extends ImageView implements View.OnTouchListener
         return true;
     }
 
-    public void init(Activity context)
+    public void init(ViewsHolder holder)
     {
-        nameView = UITool.get().findView(context, R.id.name);
-        widthView = UITool.get().findView(context, R.id.width);
-        heightView = UITool.get().findView(context, R.id.height);
-        scaleView = UITool.get().findView(context, R.id.scale);
-        parent = (FrameView) getParent();
-        fileSizeView = UITool.get().findView(context, R.id.file_size);
-        countAllView = UITool.get().findView(context, R.id.count_all);
+        this.holder = holder;
+        state = new MatrixState(holder);
+    }
+
+    @Override
+    public void progress(int progress)
+    {
+        holder.progress.setProgress(progress);
+    }
+
+    @Override
+    public void onResult(Boolean result, TaskError error)
+    {
+        UITool.get().enableAll(holder.main);
+        UITool.get().toast(error);
     }
 
     public void setFiles(List<File> files)
@@ -82,11 +82,11 @@ public class FileImageView extends ImageView implements View.OnTouchListener
 
     public void clear()
     {
-        setNameView(null);
+        holder.setNameView(null);
         setImageBitmap(null);
         state.reset();
-        setSizeView(0, 0);
-        setFileView(null);
+        holder.setSizeView(0, 0);
+        holder.setFileView(files, null);
     }
 
     private void setFile()
@@ -99,14 +99,14 @@ public class FileImageView extends ImageView implements View.OnTouchListener
         }
         Bitmap bitmap = getBitmap(file);
         setImageBitmap(bitmap);
-        setSizeView(bitmap.getWidth(), bitmap.getHeight());
-        setFileView(file);
+        holder.setSizeView(bitmap.getWidth(), bitmap.getHeight());
+        holder.setFileView(files, file);
         fitWidth(true, true);
     }
 
     private Bitmap getBitmap(File file)
     {
-        setNameView(file.getAbsolutePath());
+        holder.setNameView(file.getAbsolutePath());
         return BitmapFactory.decodeFile(file.getAbsolutePath());
     }
     
@@ -135,52 +135,22 @@ public class FileImageView extends ImageView implements View.OnTouchListener
         setFile();
     }
 
-    public void setNameView(String text)
-    {
-        nameView.setText(text);
-    }
-
-    public void setSizeView(int width, int height)
-    {
-        widthView.setText(Strings.get().get(R.string.width_value, width));
-        heightView.setText(Strings.get().get(R.string.height_value, height));
-    }
-
-    public void setScaleView(float scale)
-    {
-        scaleView.setText(Strings.get().get(R.string.scale_value, scale));
-    }
-
-    private void setFileView(File file)
-    {
-        if (file == null)
-        {
-            fileSizeView.setText(null);
-            countAllView.setText(null);
-        }
-        else
-        {
-            fileSizeView.setText(Strings.get().get(R.string.file_size, file.length()/1024f));
-            countAllView.setText((Params.POS.getValue() + 1) + "/" + files.size());
-        }
-    }
-
     public void rotate()
     {
-        state.rotate(parent);
+        state.rotate(holder.frameView);
         fitWidth(true, true);
     }
 
     public void fitWidth(boolean moveX, boolean moveY)
     {
-        state.fitWidth(parent);
+        state.fitWidth(holder.frameView);
         state.toCenter(moveX, moveY);
         state.apply();
     }
 
     public void mirror()
     {
-        state.mirror(parent);
+        state.mirror(holder.frameView);
         state.apply();
     }
 
@@ -203,7 +173,7 @@ public class FileImageView extends ImageView implements View.OnTouchListener
     private File save(File file)
     {
         Bitmap bitmap = getBitmap(file);
-        RectF rect = new RectF(0, 0, parent.getWidth(), parent.getHeight());
+        RectF rect = new RectF(0, 0, holder.frameView.getWidth(), holder.frameView.getHeight());
         File result = new ImageSaver(bitmap, state, rect).save();
         if (result == null)
         {
@@ -269,14 +239,8 @@ public class FileImageView extends ImageView implements View.OnTouchListener
     public void cleanupBackup()
     {
         undoFiles.clear();
-        File[] files = new File(Params.BACKUP_FOLDER.getValue()).listFiles();
-        if (files == null)
-        {
-            return;
-        }
-        for (File file : files)
-        {
-            file.delete();
-        }
+        String dir = Params.BACKUP_FOLDER.getValue();
+        UITool.get().disableAll(holder.main);
+        new FolderCleanUpTask(this).execute(dir);
     }
 }

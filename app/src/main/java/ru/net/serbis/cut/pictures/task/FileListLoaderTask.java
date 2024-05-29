@@ -12,7 +12,7 @@ public class FileListLoaderTask extends AsyncTask<String, Integer, List<File>>
 {
     private TaskCallback<List<File>> callback;
     private TaskError error;
-    private Progress progress = new Progress();;
+    private Progress progress = new Progress();
 
     public FileListLoaderTask(TaskCallback<List<File>> callback)
     {

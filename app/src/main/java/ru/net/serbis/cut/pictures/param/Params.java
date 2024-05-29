@@ -14,7 +14,8 @@ public interface Params
     StringsParam CATEGORIES = new StringsParam(R.string.categories);
     EditNumberParam POS = new EditNumberParam(R.string.pos, 0, false);
     SeekBarParam JPG_QUALITY = new SeekBarParam(R.string.jpg_quality, 100, 80);
-
+    EditTextParam CATEGORY = new EditTextParam(R.string.category, "");
+    
     Param[] PARAMS = new Param[]{
         SOURCE_FOLDER,
         BACKUP_FOLDER,

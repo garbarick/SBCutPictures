@@ -7,6 +7,7 @@ import java.util.*;
 import ru.net.serbis.cut.pictures.*;
 import ru.net.serbis.cut.pictures.bean.*;
 import ru.net.serbis.cut.pictures.param.*;
+import android.text.*;
 
 public class ImageSaver
 {
@@ -76,6 +77,13 @@ public class ImageSaver
     private File getFile()
     {
         String fileName = new SimpleDateFormat(Params.NAME_PATTERN.getValue()).format(new Date()) + "." + format.name();
-        return new File(Params.SOURCE_FOLDER.getValue(), fileName);
+        File dir = new File(Params.SOURCE_FOLDER.getValue());
+        String category = Params.CATEGORY.getValue();
+        if (!TextUtils.isEmpty(category))
+        {
+            dir = new File(dir, category);
+            dir.mkdirs();
+        }
+        return new File(dir, fileName);
     }
 }

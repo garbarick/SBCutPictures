@@ -6,7 +6,7 @@ import ru.net.serbis.cut.pictures.view.*;
 
 public class MatrixState
 {
-    private FileImageView view;
+    private ViewsHolder holder;
     private Matrix matrix = new Matrix();
     private Matrix stored = new Matrix();
     private PointF start = new PointF();
@@ -16,9 +16,9 @@ public class MatrixState
     private int mirrorX;
     private int mirrorY;
 
-    public MatrixState(FileImageView view)
+    public MatrixState(ViewsHolder holder)
     {
-        this.view = view;
+        this.holder = holder;
     }
 
     public Matrix getMatrix()
@@ -55,8 +55,8 @@ public class MatrixState
 
     public void apply()
     {
-        view.setImageMatrix(matrix);
-        view.setScaleView(getScale());
+        holder.img.setImageMatrix(matrix);
+        holder.setScaleView(getScale());
     }
 
     public void translate(float x, float y)
@@ -185,7 +185,7 @@ public class MatrixState
 
     public void fitWidth(FrameView parent)
     {
-        Rect rect = view.getDrawable().getBounds();
+        Rect rect = holder.img.getDrawable().getBounds();
         float imageWidth = rect.width();
         if (rotate == 90 || rotate == 270)
         {
@@ -214,7 +214,7 @@ public class MatrixState
         float sx = absMax(values[Matrix.MSCALE_X], values[Matrix.MSKEW_X]);
         float sy = absMax(values[Matrix.MSCALE_Y], values[Matrix.MSKEW_Y]);
  
-        Rect rect = view.getDrawable().getBounds();
+        Rect rect = holder.img.getDrawable().getBounds();
         float dx = rect.width() * sx;
         float dy = rect.height() * sy;
 
