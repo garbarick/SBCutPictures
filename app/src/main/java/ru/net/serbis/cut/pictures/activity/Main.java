@@ -139,6 +139,9 @@ public class Main extends Activity implements TaskCallback<List<File>>, View.OnC
             case R.id.undo:
                 img.undo();
                 break;
+            case R.id.cleanup_backup:
+                img.cleanupBackup();
+                break;
             default:
                 UITool.get().notImplementedYet();
                 break;

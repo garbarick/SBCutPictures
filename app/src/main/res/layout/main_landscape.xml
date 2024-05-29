@@ -17,46 +17,54 @@
 			android:src="@android:drawable/ic_menu_manage"
 			android:layout_weight="1"
 			android:id="@+id/settings"
-            android:scaleType="centerInside"/>
-
-        <ImageButton
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:src="@android:drawable/ic_menu_save"
-            android:layout_weight="1"
-			android:id="@+id/save"
-            android:scaleType="centerInside"/>
-
-        <ImageButton
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:src="@drawable/save_as"
-            android:layout_weight="1"
-			android:id="@+id/save_as"
-            android:scaleType="centerInside"/>
-
-        <ImageButton
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:src="@android:drawable/ic_menu_delete"
-            android:layout_weight="1"
-            android:id="@+id/delete"
-            android:scaleType="centerInside"/>
-
-        <ImageButton
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:src="@drawable/undo"
-            android:layout_weight="1"
-            android:id="@+id/undo"
 			android:scaleType="centerInside"/>
 
-    </LinearLayout>
+		<ImageButton
+			android:layout_width="match_parent"
+			android:layout_height="match_parent"
+			android:src="@android:drawable/ic_menu_save"
+			android:layout_weight="1"
+			android:id="@+id/save"
+			android:scaleType="centerInside"/>
 
-    <LinearLayout
-            android:orientation="vertical"
-            android:layout_width="50dp"
-            android:layout_height="match_parent">
+		<ImageButton
+			android:layout_width="match_parent"
+			android:layout_height="match_parent"
+			android:src="@drawable/save_as"
+			android:layout_weight="1"
+			android:id="@+id/save_as"
+			android:scaleType="centerInside"/>
+
+		<ImageButton
+			android:layout_width="match_parent"
+			android:layout_height="match_parent"
+			android:src="@android:drawable/ic_menu_delete"
+			android:layout_weight="1"
+			android:id="@+id/delete"
+			android:scaleType="centerInside"/>
+
+		<ImageButton
+			android:layout_width="match_parent"
+			android:layout_height="match_parent"
+			android:src="@drawable/undo"
+			android:layout_weight="1"
+			android:id="@+id/undo"
+			android:scaleType="centerInside"/>
+
+		<ImageButton
+			android:layout_width="match_parent"
+			android:layout_height="match_parent"
+			android:src="@drawable/cleanup_backup"
+			android:layout_weight="1"
+			android:id="@+id/cleanup_backup"
+			android:scaleType="centerInside"/>
+
+	</LinearLayout>
+
+	<LinearLayout
+		android:orientation="vertical"
+		android:layout_width="50dp"
+		android:layout_height="match_parent">
 
 		<ImageButton
 			android:layout_width="match_parent"
@@ -64,7 +72,7 @@
 			android:src="@android:drawable/ic_menu_rotate"
 			android:layout_weight="1"
 			android:id="@+id/rotate"
-            android:scaleType="centerInside"/>
+			android:scaleType="centerInside"/>
 
 		<ImageButton
 			android:layout_width="match_parent"
@@ -82,21 +90,29 @@
 			android:layout_width="match_parent"
 			android:layout_height="match_parent"/>
 
-        <ImageButton
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:src="@android:drawable/ic_media_previous"
-            android:layout_weight="1"
-            android:id="@+id/previous"
-            android:scaleType="centerInside"/>
+		<ImageButton
+			android:src="@drawable/category"
+			android:layout_weight="1"
+			android:id="@+id/category"
+			android:scaleType="centerInside"
+			android:layout_width="match_parent"
+			android:layout_height="match_parent"/>
 
-        <ImageButton
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:src="@android:drawable/ic_media_next"
-            android:layout_weight="1"
-            android:id="@+id/next"
-            android:scaleType="centerInside"/>
+		<ImageButton
+			android:layout_width="match_parent"
+			android:layout_height="match_parent"
+			android:src="@android:drawable/ic_media_previous"
+			android:layout_weight="1"
+			android:id="@+id/previous"
+			android:scaleType="centerInside"/>
+
+		<ImageButton
+			android:layout_width="match_parent"
+			android:layout_height="match_parent"
+			android:src="@android:drawable/ic_media_next"
+			android:layout_weight="1"
+			android:id="@+id/next"
+			android:scaleType="centerInside"/>
 
 	</LinearLayout>
 
@@ -112,6 +128,28 @@
 			android:singleLine="true"
 			android:id="@+id/name"
 			android:ellipsize="start"/>
+
+		<LinearLayout
+			android:orientation="horizontal"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content">
+
+			<TextView
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:singleLine="true"
+				android:id="@+id/count_all"
+				android:layout_weight="1"/>
+
+			<TextView
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:singleLine="true"
+				android:id="@+id/file_size"
+				android:layout_weight="1"
+				android:gravity="right"/>
+
+		</LinearLayout>
 
 		<ru.net.serbis.cut.pictures.view.FrameView
 			android:orientation="horizontal"
@@ -143,14 +181,16 @@
 				android:layout_height="wrap_content"
 				android:singleLine="true"
 				android:id="@+id/height"
-				android:layout_weight="1"/>
+				android:layout_weight="1"
+				android:gravity="center"/>
 
 			<TextView
 				android:layout_width="match_parent"
 				android:layout_height="wrap_content"
 				android:singleLine="true"
 				android:id="@+id/scale"
-				android:layout_weight="1"/>
+				android:layout_weight="1"
+				android:gravity="right"/>
 
 		</LinearLayout>
 

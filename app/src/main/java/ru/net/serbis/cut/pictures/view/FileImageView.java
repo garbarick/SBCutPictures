@@ -20,6 +20,8 @@ public class FileImageView extends ImageView implements View.OnTouchListener
     private TextView heightView;
     private TextView scaleView;
     private FrameView parent;
+    private TextView fileSizeView;
+    private TextView countAllView;
 
     private List<File> files = new ArrayList<File>();
     private List<File> undoFiles = new ArrayList<File>();
@@ -63,6 +65,8 @@ public class FileImageView extends ImageView implements View.OnTouchListener
         heightView = UITool.get().findView(context, R.id.height);
         scaleView = UITool.get().findView(context, R.id.scale);
         parent = (FrameView) getParent();
+        fileSizeView = UITool.get().findView(context, R.id.file_size);
+        countAllView = UITool.get().findView(context, R.id.count_all);
     }
 
     public void setFiles(List<File> files)
@@ -82,6 +86,7 @@ public class FileImageView extends ImageView implements View.OnTouchListener
         setImageBitmap(null);
         state.reset();
         setSizeView(0, 0);
+        setFileView(null);
     }
 
     private void setFile()
@@ -95,6 +100,7 @@ public class FileImageView extends ImageView implements View.OnTouchListener
         Bitmap bitmap = getBitmap(file);
         setImageBitmap(bitmap);
         setSizeView(bitmap.getWidth(), bitmap.getHeight());
+        setFileView(file);
         fitWidth(true, true);
     }
 
@@ -143,6 +149,20 @@ public class FileImageView extends ImageView implements View.OnTouchListener
     public void setScaleView(float scale)
     {
         scaleView.setText(Strings.get().get(R.string.scale_value, scale));
+    }
+
+    private void setFileView(File file)
+    {
+        if (file == null)
+        {
+            fileSizeView.setText(null);
+            countAllView.setText(null);
+        }
+        else
+        {
+            fileSizeView.setText(Strings.get().get(R.string.file_size, file.length()/1024f));
+            countAllView.setText((Params.POS.getValue() + 1) + "/" + files.size());
+        }
     }
 
     public void rotate()
@@ -243,6 +263,20 @@ public class FileImageView extends ImageView implements View.OnTouchListener
             files.add(Params.POS.getValue(), file);
             undoFiles.remove(last);
             setFile();
+        }
+    }
+
+    public void cleanupBackup()
+    {
+        undoFiles.clear();
+        File[] files = new File(Params.BACKUP_FOLDER.getValue()).listFiles();
+        if (files == null)
+        {
+            return;
+        }
+        for (File file : files)
+        {
+            file.delete();
         }
     }
 }
