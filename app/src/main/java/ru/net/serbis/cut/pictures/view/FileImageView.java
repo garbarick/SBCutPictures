@@ -211,6 +211,7 @@ public class FileImageView extends ImageView implements View.OnTouchListener, Ta
             return;
         }
         files.add(Params.POS.getValue(), result);
+        setFile();
     }
 
     public void delete()
