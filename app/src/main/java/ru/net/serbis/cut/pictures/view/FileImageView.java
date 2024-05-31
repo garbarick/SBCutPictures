@@ -116,6 +116,11 @@ public class FileImageView extends ImageView implements View.OnTouchListener, Ta
         {
             return null;
         }
+        int pos = Params.POS.getValue();
+        if (pos < 0 || pos + 1 > files.size())
+        {
+            Params.POS.saveValue(0);
+        }
         return files.get(Params.POS.getValue());
     }
 
@@ -123,7 +128,7 @@ public class FileImageView extends ImageView implements View.OnTouchListener, Ta
     {
         Params.POS.saveValue(
             Math.min(
-                files.size() - 1,
+                Math.max(0, files.size() - 1),
                 Params.POS.getValue() + 1));
         setFile();
     }
