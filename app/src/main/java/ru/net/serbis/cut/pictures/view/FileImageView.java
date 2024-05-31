@@ -18,6 +18,7 @@ public class FileImageView extends ImageView implements View.OnTouchListener, Ta
     private List<File> files = new ArrayList<File>();
     private List<File> undoFiles = new ArrayList<File>();
     private MatrixState state;
+    private Position pos = new Position();
 
     public FileImageView(Context context, AttributeSet attrs)
     {
@@ -73,10 +74,6 @@ public class FileImageView extends ImageView implements View.OnTouchListener, Ta
     {
         this.files.clear();
         this.files.addAll(files);
-        if (Params.POS.getValue() > files.size() - 1)
-        {
-            Params.POS.saveValue(0);
-        }
         setFile();
     }
 
@@ -116,27 +113,18 @@ public class FileImageView extends ImageView implements View.OnTouchListener, Ta
         {
             return null;
         }
-        int pos = Params.POS.getValue();
-        if (pos < 0 || pos + 1 > files.size())
-        {
-            Params.POS.saveValue(0);
-        }
-        return files.get(Params.POS.getValue());
+        return files.get(pos.get(files.size()));
     }
 
     public void next()
     {
-        Params.POS.saveValue(
-            Math.min(
-                Math.max(0, files.size() - 1),
-                Params.POS.getValue() + 1));
+        pos.next(files.size());
         setFile();
     }
 
     public void previous()
     {
-        Params.POS.saveValue(
-            Math.max(0, Params.POS.getValue() - 1));
+        pos.previous();
         setFile();
     }
 
