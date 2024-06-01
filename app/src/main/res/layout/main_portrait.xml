@@ -6,115 +6,17 @@
 	android:orientation="vertical"
 	android:id="@+id/main">
 
-	<LinearLayout
+	<ru.net.serbis.cut.pictures.view.ButtonsView
 		android:orientation="horizontal"
 		android:layout_width="match_parent"
-		android:layout_height="50dp">
+		android:layout_height="50dp"
+        android:layout="@layout/buttons1"/>
 
-		<ImageButton
-			android:layout_width="match_parent"
-			android:layout_height="match_parent"
-			android:src="@android:drawable/ic_menu_manage"
-			android:layout_weight="1"
-			android:id="@+id/settings"
-			android:scaleType="centerInside"/>
-
-		<ImageButton
-			android:layout_width="match_parent"
-			android:layout_height="match_parent"
-			android:src="@android:drawable/ic_menu_save"
-			android:layout_weight="1"
-			android:id="@+id/save"
-			android:scaleType="centerInside"/>
-
-		<ImageButton
-			android:layout_width="match_parent"
-			android:layout_height="match_parent"
-			android:src="@drawable/save_as"
-			android:layout_weight="1"
-			android:id="@+id/save_as"
-			android:scaleType="centerInside"/>
-
-		<ImageButton
-			android:layout_width="match_parent"
-			android:layout_height="match_parent"
-			android:src="@android:drawable/ic_menu_delete"
-			android:layout_weight="1"
-			android:id="@+id/delete"
-			android:scaleType="centerInside"/>
-
-		<ImageButton
-			android:layout_width="match_parent"
-			android:layout_height="match_parent"
-			android:src="@drawable/undo"
-			android:layout_weight="1"
-			android:id="@+id/undo"
-			android:scaleType="centerInside"/>
-
-		<ImageButton
-			android:layout_width="match_parent"
-			android:layout_height="match_parent"
-			android:src="@drawable/cleanup_backup"
-			android:layout_weight="1"
-			android:id="@+id/cleanup_backup"
-			android:scaleType="centerInside"/>
-
-	</LinearLayout>
-
-	<LinearLayout
+	<ru.net.serbis.cut.pictures.view.ButtonsView
 		android:orientation="horizontal"
 		android:layout_width="match_parent"
-		android:layout_height="50dp">
-
-		<ImageButton
-			android:layout_width="match_parent"
-			android:layout_height="match_parent"
-			android:src="@android:drawable/ic_menu_rotate"
-			android:layout_weight="1"
-			android:id="@+id/rotate"
-			android:scaleType="centerInside"/>
-
-		<ImageButton
-			android:layout_width="match_parent"
-			android:layout_height="match_parent"
-			android:src="@drawable/mirror"
-			android:layout_weight="1"
-			android:id="@+id/mirror"
-			android:scaleType="centerInside"/>
-
-		<ImageButton
-			android:src="@drawable/fit_width"
-			android:layout_weight="1"
-			android:id="@+id/fit_width"
-			android:scaleType="centerInside"
-			android:layout_width="match_parent"
-			android:layout_height="match_parent"/>
-
-		<ImageButton
-			android:src="@drawable/category"
-			android:layout_weight="1"
-			android:id="@+id/category"
-			android:scaleType="centerInside"
-			android:layout_width="match_parent"
-			android:layout_height="match_parent"/>
-
-		<ImageButton
-			android:layout_width="match_parent"
-			android:layout_height="match_parent"
-			android:src="@android:drawable/ic_media_previous"
-			android:layout_weight="1"
-			android:id="@+id/previous"
-			android:scaleType="centerInside"/>
-
-		<ImageButton
-			android:layout_width="match_parent"
-			android:layout_height="match_parent"
-			android:src="@android:drawable/ic_media_next"
-			android:layout_weight="1"
-			android:id="@+id/next"
-			android:scaleType="centerInside"/>
-
-	</LinearLayout>
+		android:layout_height="50dp"
+        android:layout="@layout/buttons2"/>
 
 	<TextView
 		android:layout_width="match_parent"
