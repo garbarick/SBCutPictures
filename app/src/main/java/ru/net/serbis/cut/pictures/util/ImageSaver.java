@@ -1,13 +1,12 @@
 package ru.net.serbis.cut.pictures.util;
 
 import android.graphics.*;
+import android.text.*;
 import java.io.*;
 import java.text.*;
 import java.util.*;
-import ru.net.serbis.cut.pictures.*;
 import ru.net.serbis.cut.pictures.bean.*;
 import ru.net.serbis.cut.pictures.param.*;
-import android.text.*;
 
 public class ImageSaver
 {
@@ -28,7 +27,7 @@ public class ImageSaver
         this.sourceRect = sourceRect;
     }
     
-    public File save()
+    public File save() throws Exception
     {
         Matrix matrix = getMatrix();
         Bitmap bitmap = convert(matrix);
@@ -45,7 +44,7 @@ public class ImageSaver
         return result;
     }
 
-    private File save(Bitmap bitmap, File file)
+    private File save(Bitmap bitmap, File file) throws Exception
     {
         OutputStream out = null;
         try
@@ -53,12 +52,6 @@ public class ImageSaver
             out = new FileOutputStream(file);
             bitmap.compress(format.getFormat(), format.getQuality(), out);
             return file;
-        }
-        catch (Exception e)
-        {
-            Log.error(this, e);
-            UITool.get().toast(Constants.ERROR_SAVE_FILE, e.getMessage());
-            return null;
         }
         finally
         {

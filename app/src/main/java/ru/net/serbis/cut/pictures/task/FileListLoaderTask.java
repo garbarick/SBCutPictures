@@ -44,6 +44,7 @@ public class FileListLoaderTask extends AsyncTask<String, Integer, List<File>>
     {
         List<File> result = loadLocalFiles(new File(dir));
         Collections.sort(result, new ImageSorter());
+        UITool.get().toast(Strings.get().get(R.string.found_files, result.size()));
         return result;
     }
 

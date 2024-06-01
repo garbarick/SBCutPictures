@@ -22,9 +22,13 @@ public class Position
         Params.POS.saveValue(pos);
     }
 
-    public void previous()
+    public void previous(int count)
     {
-        Params.POS.saveValue(
-            Math.max(0, Params.POS.getValue() - 1));
+        int pos = Params.POS.getValue() - 1;
+        if (pos < 0)
+        {
+            pos = count - 1;
+        }
+        Params.POS.saveValue(Math.max(0, pos));
     }
 }

@@ -27,4 +27,6 @@
     <string name="pos">Pos</string>
     <string name="jpg_quality">JPG quality</string>
     <string name="file_size">%.2f kb</string>
+    <string name="found_files">found %d files</string>
+    <string name="deleted_files">deleted %d files</string>
 </resources>

@@ -52,6 +52,7 @@ public class FolderCleanUpTask extends AsyncTask<String, Integer, Boolean>
             file.delete();
             publishProgress(progress.progress());
         }
+        UITool.get().toast(Strings.get().get(R.string.deleted_files, files.length));
     }
 
     @Override

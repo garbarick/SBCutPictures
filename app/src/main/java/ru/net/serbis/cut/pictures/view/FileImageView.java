@@ -12,7 +12,7 @@ import ru.net.serbis.cut.pictures.param.*;
 import ru.net.serbis.cut.pictures.task.*;
 import ru.net.serbis.cut.pictures.util.*;
 
-public class FileImageView extends ImageView implements View.OnTouchListener, TaskCallback<Boolean>
+public class FileImageView extends ImageView implements View.OnTouchListener
 {
     private ViewsHolder holder;
     private List<File> files = new ArrayList<File>();
@@ -55,19 +55,6 @@ public class FileImageView extends ImageView implements View.OnTouchListener, Ta
     {
         this.holder = holder;
         state = new MatrixState(holder);
-    }
-
-    @Override
-    public void progress(int progress)
-    {
-        holder.progress.setProgress(progress);
-    }
-
-    @Override
-    public void onResult(Boolean result, TaskError error)
-    {
-        UITool.get().enableAll(holder.main);
-        UITool.get().toast(error);
     }
 
     public void setFiles(List<File> files)
@@ -124,7 +111,7 @@ public class FileImageView extends ImageView implements View.OnTouchListener, Ta
 
     public void previous()
     {
-        pos.previous();
+        pos.previous(files.size());
         setFile();
     }
 
@@ -149,31 +136,51 @@ public class FileImageView extends ImageView implements View.OnTouchListener, Ta
 
     public void save()
     {
-        File file = getFile();
+        final File file = getFile();
         if (file == null)
         {
             return;
         }
-        File result = save(file);
-        if (result == null)
-        {
-            return;
-        }
-        files.set(Params.POS.getValue(), result);
-        deleteFileWithBackup(file);
+        save(
+            file,
+            new Result<File>()
+            {
+                public void result(File result)
+                {
+                    files.set(Params.POS.getValue(), result);
+                    deleteFileWithBackup(file);
+                    setFile();
+                }
+            }
+        );
     }
 
-    private File save(File file)
+    private void save(final File file, final Result<File> fileResult)
     {
-        Bitmap bitmap = getBitmap(file);
+        UITool.get().disableAll(holder.main);
         RectF rect = new RectF(0, 0, holder.frameView.getWidth(), holder.frameView.getHeight());
-        File result = new ImageSaver(bitmap, state, rect).save();
-        if (result == null)
-        {
-            return null;
-        }
-        result.setLastModified(file.lastModified());
-        return result;
+        new ImageSaveTask(
+            state,
+            rect,            
+            new TaskCallback<File>()
+            {
+                @Override
+                public void progress(int progress)
+                {
+                }
+
+                @Override
+                public void onResult(File result, TaskError error)
+                {
+                    UITool.get().enableAll(holder.main);
+                    UITool.get().toast(error);
+                    if (result != null)
+                    {
+                        result.setLastModified(file.lastModified());
+                        fileResult.result(result);
+                    }
+                }
+            }).execute(file);
     }
 
     private void deleteFileWithBackup(File file)
@@ -182,7 +189,6 @@ public class FileImageView extends ImageView implements View.OnTouchListener, Ta
         if (IOTool.get().moveFileQuietly(file, backup))
         {
             undoFiles.add(backup);
-            setFile();
         }
     }
 
@@ -193,13 +199,17 @@ public class FileImageView extends ImageView implements View.OnTouchListener, Ta
         {
             return;
         }
-        File result = save(file);
-        if (result == null)
-        {
-            return;
-        }
-        files.add(Params.POS.getValue(), result);
-        setFile();
+        save(
+            file,
+            new Result<File>()
+            {
+                public void result(File result)
+                {
+                    files.add(Params.POS.getValue(), result);
+                    setFile();
+                }
+            }
+        );
     }
 
     public void delete()
@@ -211,6 +221,7 @@ public class FileImageView extends ImageView implements View.OnTouchListener, Ta
         }
         files.remove(file);
         deleteFileWithBackup(file);
+        setFile();
     }
 
     public void undo()
@@ -235,6 +246,22 @@ public class FileImageView extends ImageView implements View.OnTouchListener, Ta
         undoFiles.clear();
         String dir = Params.BACKUP_FOLDER.getValue();
         UITool.get().disableAll(holder.main);
-        new FolderCleanUpTask(this).execute(dir);
+        new FolderCleanUpTask(
+            new TaskCallback<Boolean>()
+            {
+                @Override
+                public void progress(int progress)
+                {
+                    holder.progress.setProgress(progress);
+                }
+
+                @Override
+                public void onResult(Boolean result, TaskError error)
+                {
+                    UITool.get().enableAll(holder.main);
+                    UITool.get().toast(error);
+                }
+            }
+        ).execute(dir);
     }
 }
