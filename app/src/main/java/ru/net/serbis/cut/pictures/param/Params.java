@@ -24,7 +24,6 @@ public interface Params
         NAME_PATTERN,
         IMAGE_FORMAT,
         JPG_QUALITY,
-        CATEGORIES,
-        POS
+        CATEGORIES
     };
 }
