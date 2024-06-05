@@ -15,9 +15,14 @@ public class FrameView extends FrameLayout
         super(context, attrs);
 
         paint.setStyle(Paint.Style.STROKE);
-        paint.setColor(Color.GREEN);
+        updateColor();
         paint.setStrokeWidth(4);
         setWillNotDraw(false);
+    }
+
+    public void updateColor()
+    {
+        paint.setColor(Params.FRAME_COLOR.getValue());
     }
 
     @Override

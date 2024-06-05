@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="match_parent"
+	android:layout_height="wrap_content"
+	android:orientation="vertical">
+
+	<TextView
+		android:layout_width="match_parent"
+		android:layout_height="100dp"
+		android:layout_margin="10dp"
+		android:id="@+id/color"/>
+
+	<LinearLayout
+		android:orientation="horizontal"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:layout_margin="10dp">
+
+		<TextView
+			android:layout_width="wrap_content"
+			android:layout_height="match_parent"
+			android:layout_marginRight="10dp"
+			android:text="A"/>
+
+		<SeekBar
+			android:layout_width="wrap_content"
+			android:layout_height="match_parent"
+			android:layout_weight="1"
+			android:id="@+id/color_a"/>
+
+		<TextView
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_marginLeft="10dp"
+			android:id="@+id/color_a_value"/>
+
+	</LinearLayout>
+
+	<LinearLayout
+		android:orientation="horizontal"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:layout_margin="10dp">
+
+		<TextView
+			android:layout_width="wrap_content"
+			android:layout_height="match_parent"
+			android:layout_marginRight="10dp"
+			android:text="R"/>
+
+		<SeekBar
+			android:layout_width="wrap_content"
+			android:layout_height="match_parent"
+			android:layout_weight="1"
+			android:id="@+id/color_r"/>
+
+		<TextView
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_marginLeft="10dp"
+			android:id="@+id/color_r_value"/>
+
+	</LinearLayout>
+
+	<LinearLayout
+		android:orientation="horizontal"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:layout_margin="10dp">
+
+		<TextView
+			android:layout_width="wrap_content"
+			android:layout_height="match_parent"
+			android:layout_marginRight="10dp"
+			android:text="G"/>
+
+		<SeekBar
+			android:layout_width="wrap_content"
+			android:layout_height="match_parent"
+			android:layout_weight="1"
+			android:id="@+id/color_g"/>
+
+		<TextView
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_marginLeft="10dp"
+			android:id="@+id/color_g_value"/>
+
+	</LinearLayout>
+
+	<LinearLayout
+		android:orientation="horizontal"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:layout_margin="10dp">
+
+		<TextView
+			android:layout_width="wrap_content"
+			android:layout_height="match_parent"
+			android:layout_marginRight="10dp"
+			android:text="B"/>
+
+		<SeekBar
+			android:layout_width="wrap_content"
+			android:layout_height="match_parent"
+			android:layout_weight="1"
+			android:id="@+id/color_b"/>
+
+		<TextView
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_marginLeft="10dp"
+			android:id="@+id/color_b_value"/>
+
+	</LinearLayout>
+
+</LinearLayout>
+

@@ -20,7 +20,7 @@ public class StringsParam extends Param<Set<String>, Button>
     @Override
     public int getLayoutId()
     {
-        return R.layout.param_strings;
+        return R.layout.param_button;
     }
 
     @Override

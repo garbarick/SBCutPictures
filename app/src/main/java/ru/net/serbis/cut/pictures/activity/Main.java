@@ -90,17 +90,22 @@ public class Main extends Activity implements TaskCallback<List<File>>, View.OnC
         public void ok(ParamsAdapter adapter)
         {
             super.ok(adapter);
-            holder.updateCategories();
-            initImg();
+            update();
         }
 
         @Override
         public void reset(ParamsAdapter adapter)
         {
             super.reset(adapter);
-            holder.updateCategories();
-            initImg();
+            update();
         }
+    }
+
+    private void update()
+    {
+        holder.updateCategories();
+        initImg();
+        holder.frameView.updateColor();
     }
 
     @Override

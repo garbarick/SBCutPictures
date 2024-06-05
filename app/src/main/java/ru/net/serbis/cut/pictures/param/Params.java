@@ -1,5 +1,6 @@
 package ru.net.serbis.cut.pictures.param;
 
+import android.graphics.*;
 import ru.net.serbis.cut.pictures.*;
 import ru.net.serbis.cut.pictures.util.*;
 
@@ -15,6 +16,7 @@ public interface Params
     EditNumberParam POS = new EditNumberParam(R.string.pos, 0, false);
     SeekBarParam JPG_QUALITY = new SeekBarParam(R.string.jpg_quality, 100, 80);
     EditTextParam CATEGORY = new EditTextParam(R.string.category, "");
+    ColorParam FRAME_COLOR = new ColorParam(R.string.frame_color, Color.GREEN);
     
     Param[] PARAMS = new Param[]{
         SOURCE_FOLDER,
@@ -24,6 +26,7 @@ public interface Params
         NAME_PATTERN,
         IMAGE_FORMAT,
         JPG_QUALITY,
-        CATEGORIES
+        CATEGORIES,
+        FRAME_COLOR
     };
 }
