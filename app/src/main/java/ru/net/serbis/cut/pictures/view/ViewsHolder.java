@@ -22,7 +22,7 @@ public class ViewsHolder
     public TextView fileSizeView;
     public TextView countAllView;
     public PopupMenu categoryMenu;
-    
+
     public void init(Activity context)
     {
         main = UITool.get().findView(context, R.id.main);
@@ -66,7 +66,7 @@ public class ViewsHolder
         }
         else
         {
-            fileSizeView.setText(Strings.get().get(R.string.file_size, file.length()/1024f));
+            fileSizeView.setText(Strings.get().get(R.string.file_size, file.length() / 1024f));
             countAllView.setText((Params.POS.getValue() + 1) + "/" + files.size());
         }
     }
@@ -76,21 +76,19 @@ public class ViewsHolder
         Menu menu = categoryMenu.getMenu();
         menu.clear();
         String current = Params.CATEGORY.getValue();
+        int i = 0;
         for (String category : Params.CATEGORIES.getValue())
         {
-            menu.add(category).setCheckable(true).setChecked(category.equals(current));
+            menu.add(0, i, i, category).setChecked(category.equals(current));
+            i ++;
         }
+        menu.setGroupCheckable(0, true, true);
     }
 
     public void checkCategory(MenuItem item)
     {
         boolean checked = !item.isChecked();
-        Menu menu = categoryMenu.getMenu();
-        for (int i = 0; i < menu.size(); i ++)
-        {
-            menu.getItem(i).setChecked(false);
-        }
-        item.setChecked(checked);
         Params.CATEGORY.saveValue(checked ? item.getTitle().toString() : "");
+        updateCategories();
     }
 }
