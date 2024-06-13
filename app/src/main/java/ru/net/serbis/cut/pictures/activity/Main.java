@@ -30,13 +30,13 @@ public class Main extends Activity implements TaskCallback<List<File>>, View.OnC
         UITool.get().initAllButtons(holder.main, this);
         holder.categoryMenu.setOnMenuItemClickListener(this);
 
-        holder.img.post(
+        holder.imgView.post(
             new Runnable() 
             {
                 @Override
                 public void run()
                 {
-                    holder.img.init(holder);
+                    holder.imgView.init(holder);
                     initImg();
                 }
             }
@@ -55,7 +55,7 @@ public class Main extends Activity implements TaskCallback<List<File>>, View.OnC
 
     private void initImg()
     {
-        holder.img.clear();
+        holder.imgView.clear();
         String dir = Params.SOURCE_FOLDER.getValue();
         UITool.get().disableAll(holder.main);
         new FileListLoaderTask(this).execute(dir);
@@ -76,7 +76,7 @@ public class Main extends Activity implements TaskCallback<List<File>>, View.OnC
         {
             return;
         }
-        holder.img.setFiles(result);
+        holder.imgView.setFiles(result);
     }
 
     private class Settings extends ParamsDialog
@@ -116,35 +116,44 @@ public class Main extends Activity implements TaskCallback<List<File>>, View.OnC
             case R.id.settings:
                 new Settings(this).show();
                 break;
-            case R.id.rotate:
-                holder.img.rotate();
+            case R.id.rotate_right:
+                holder.imgView.rotateRight();
                 break;
-            case R.id.mirror:
-                holder.img.mirror();
+            case R.id.rotate_left:
+                holder.imgView.rotateLeft();
+                break;
+            case R.id.mirror_x:
+                holder.imgView.mirrorX();
+                break;
+            case R.id.mirror_y:
+                holder.imgView.mirrorY();
                 break;
             case R.id.fit_width:
-                holder.img.fitWidth(true, false);
+                holder.imgView.fitWidth(true, false);
+                break;
+            case R.id.fit_height:
+                holder.imgView.fitHeight(false, true);
                 break;
             case R.id.previous:
-                holder.img.previous();
+                holder.imgView.previous();
                 break;
             case R.id.next:
-                holder.img.next();
+                holder.imgView.next();
                 break;
             case R.id.save:
-                holder.img.save();
+                holder.imgView.save();
                 break;
             case R.id.save_as:
-                holder.img.saveAs();
+                holder.imgView.saveAs();
                 break;
             case R.id.delete:
-                holder.img.delete();
+                holder.imgView.delete();
                 break;
             case R.id.undo:
-                holder.img.undo();
+                holder.imgView.undo();
                 break;
             case R.id.cleanup_backup:
-                holder.img.cleanupBackup();
+                holder.imgView.cleanupBackup();
                 break;
             case R.id.category:
                 holder.categoryMenu.show();

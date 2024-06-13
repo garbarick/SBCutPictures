@@ -29,13 +29,16 @@ public class FrameView extends FrameLayout
     public void onDrawForeground(Canvas canvas)
     {
         super.onDrawForeground(canvas);
+        canvas.drawRect(getFramRect(1), paint);
+    }
 
-        float width = getWidth() - 2;
+    public RectF getFramRect(int border)
+    {
+        float width = getWidth() - 2 * border;
         float cutWidth = Params.CUT_WIDTH.getValue();
         float cutHeight = Params.CUT_HEIGHT.getValue();
         float height = width * cutHeight / cutWidth;
-
-        canvas.drawRect(1, 1, width, height, paint);
+        return new RectF(border, border, width, height);
     }
 
     @Override

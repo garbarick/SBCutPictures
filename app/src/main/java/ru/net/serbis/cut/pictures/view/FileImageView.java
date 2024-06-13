@@ -115,22 +115,43 @@ public class FileImageView extends ImageView implements View.OnTouchListener
         setFile();
     }
 
-    public void rotate()
+    public void rotateRight()
     {
-        state.rotate(holder.frameView);
+        state.rotateRight();
+        fitWidth(true, true);
+    }
+
+    public void rotateLeft()
+    {
+        state.rotateLeft();
         fitWidth(true, true);
     }
 
     public void fitWidth(boolean moveX, boolean moveY)
     {
-        state.fitWidth(holder.frameView);
+        state.fitWidth();
         state.toCenter(moveX, moveY);
         state.apply();
     }
 
-    public void mirror()
+    public void fitHeight(boolean moveX, boolean moveY)
     {
-        state.mirror(holder.frameView);
+        state.fitHeight();
+        state.toCenter(moveX, moveY);
+        state.apply();
+    }
+
+    public void mirrorX()
+    {
+        state.mirrorX();
+        state.toCenter(true, true);
+        state.apply();
+    }
+
+    public void mirrorY()
+    {
+        state.mirrorY();
+        state.toCenter(true, true);
         state.apply();
     }
 

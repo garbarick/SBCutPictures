@@ -3,28 +3,34 @@
 	xmlns:android="http://schemas.android.com/apk/res/android"
 	android:layout_height="match_parent"
 	android:layout_width="match_parent"
-    android:id="@+id/buttons">
+	android:id="@+id/buttons">
 
 	<ImageButton
 		android:layout_width="match_parent"
 		android:layout_height="match_parent"
-		android:src="@drawable/rotate_right"
+		android:src="@drawable/rotate_left"
 		android:layout_weight="1"
-		android:id="@+id/rotate_right"
+		android:id="@+id/rotate_left"
 		android:scaleType="centerInside"/>
 
 	<ImageButton
 		android:layout_width="match_parent"
 		android:layout_height="match_parent"
-		android:src="@drawable/mirror_x"
+		android:src="@drawable/mirror_y"
 		android:layout_weight="1"
-		android:id="@+id/mirror_x"
+		android:id="@+id/mirror_y"
 		android:scaleType="centerInside"/>
 
 	<ImageButton
-		android:src="@drawable/fit_width"
+		android:src="@drawable/fit_height"
 		android:layout_weight="1"
-		android:id="@+id/fit_width"
+		android:id="@+id/fit_height"
+		android:scaleType="centerInside"
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"/>
+
+	<ImageButton
+		android:layout_weight="1"
 		android:scaleType="centerInside"
 		android:layout_width="match_parent"
 		android:layout_height="match_parent"/>
@@ -32,22 +38,18 @@
     <ImageButton
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:src="@android:drawable/ic_media_previous"
         android:layout_weight="1"
+        android:id="@+id/previous"
         android:scaleType="centerInside"/>
 
     <ImageButton
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:src="@android:drawable/ic_media_next"
         android:layout_weight="1"
+        android:id="@+id/next"
 		android:scaleType="centerInside"/>
-
-	<ImageButton
-		android:src="@drawable/category"
-		android:layout_weight="1"
-		android:id="@+id/category"
-		android:scaleType="centerInside"
-		android:layout_width="match_parent"
-		android:layout_height="match_parent"/>
 
 </LinearLayout>
 

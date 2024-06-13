@@ -10,13 +10,19 @@
 		android:orientation="horizontal"
 		android:layout_width="match_parent"
 		android:layout_height="50dp"
-        android:layout="@layout/buttons1"/>
+		android:layout="@layout/buttons1"/>
 
 	<ru.net.serbis.cut.pictures.view.ButtonsView
 		android:orientation="horizontal"
 		android:layout_width="match_parent"
 		android:layout_height="50dp"
-        android:layout="@layout/buttons2"/>
+		android:layout="@layout/buttons2"/>
+
+	<ru.net.serbis.cut.pictures.view.ButtonsView
+		android:orientation="horizontal"
+		android:layout_width="match_parent"
+		android:layout_height="50dp"
+		android:layout="@layout/buttons3"/>
 
 	<TextView
 		android:layout_width="match_parent"
@@ -52,7 +58,7 @@
 		android:layout_width="match_parent"
 		android:layout_height="match_parent"
 		android:layout_weight="1"
-        android:id="@+id/frame">
+		android:id="@+id/frame">
 
 		<ru.net.serbis.cut.pictures.view.FileImageView
 			android:layout_width="match_parent"
@@ -60,6 +66,24 @@
 			android:id="@+id/img"/>
 
 	</ru.net.serbis.cut.pictures.view.FrameView>
+
+	<TextView
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:id="@+id/state"
+		android:visibility="gone"/>
+
+	<TextView
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:id="@+id/state_values"
+		android:visibility="gone"/>
+
+	<TextView
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:id="@+id/debug"
+		android:visibility="gone"/>
 
 	<LinearLayout
 		android:orientation="horizontal"

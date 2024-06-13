@@ -161,7 +161,10 @@ public class UITool extends Util
             else if (child instanceof Button ||
                      child instanceof ImageButton)
             {
-                child.setOnClickListener(tool);
+                if (child.getId() > 0)
+                {
+                    child.setOnClickListener(tool);
+                }
             }
         }
     }

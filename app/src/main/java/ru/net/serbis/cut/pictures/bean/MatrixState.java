@@ -1,6 +1,7 @@
 package ru.net.serbis.cut.pictures.bean;
 
 import android.graphics.*;
+import android.graphics.drawable.*;
 import android.view.*;
 import ru.net.serbis.cut.pictures.view.*;
 
@@ -55,8 +56,9 @@ public class MatrixState
 
     public void apply()
     {
-        holder.img.setImageMatrix(matrix);
+        holder.imgView.setImageMatrix(matrix);
         holder.setScaleView(getScale());
+        holder.setStateView("rotate:" + rotate + ", mirrorX:" + mirrorX + ", mirrorY:" + mirrorY);
     }
 
     public void translate(float x, float y)
@@ -130,7 +132,7 @@ public class MatrixState
         return getValuesAsString(getValues()) + "\n" + 
             getValuesAsString(getPosition());
     }
-        
+
     private String getValuesAsString(float[] values)
     {
         StringBuilder text = new StringBuilder();
@@ -170,28 +172,49 @@ public class MatrixState
         matrix.postScale(sx, sy, px, py);
     }
 
-    public void rotate(FrameView parent)
+    public void rotateRight()
     {
         rotate = rotate == 270 ? 0 : rotate + 90;
-        rotate(parent, 90);
+        rotate(90);
     }
-    
-    public void rotate(FrameView parent, int degrees)
+
+    public void rotateLeft()
     {
-        float x = parent.getWidth()/2f;
-        float y = parent.getHeight()/2f;
+        rotate = rotate == 0 ? 270 : rotate - 90;
+        rotate(-90);
+    }
+
+    public void rotate(float degrees)
+    {
+        float x = holder.frameView.getWidth() / 2f;
+        float y = holder.frameView.getHeight() / 2f;
         matrix.postRotate(degrees, x, y);
     }
 
-    public void fitWidth(FrameView parent)
+    public void fitWidth()
     {
-        Rect rect = holder.img.getDrawable().getBounds();
+        Rect rect = holder.imgView.getDrawable().getBounds();
+        RectF frame = holder.frameView.getFramRect(0);
         float imageWidth = rect.width();
         if (rotate == 90 || rotate == 270)
         {
             imageWidth = rect.height();
         }
-        float scale = parent.getWidth() / imageWidth;
+        float scale = frame.width() / imageWidth;
+        scale /= getScale();
+        setScale(scale, scale, 0, 0);
+    }
+
+    public void fitHeight()
+    {
+        Rect rect = holder.imgView.getDrawable().getBounds();
+        RectF frame = holder.frameView.getFramRect(0);
+        float imageHeight = rect.height();
+        if (rotate == 90 || rotate == 270)
+        {
+            imageHeight = rect.width();
+        }
+        float scale = frame.height() / imageHeight;
         scale /= getScale();
         setScale(scale, scale, 0, 0);
     }
@@ -204,22 +227,26 @@ public class MatrixState
         }
         return v2;
     }
-    
+
     public void toCenter(boolean moveX, boolean moveY)
     {
         float[] values = getValues();
+        holder.setStateValuesView(values);
+
         float x = values[Matrix.MTRANS_X];
         float y = values[Matrix.MTRANS_Y];
 
         float sx = absMax(values[Matrix.MSCALE_X], values[Matrix.MSKEW_X]);
         float sy = absMax(values[Matrix.MSCALE_Y], values[Matrix.MSKEW_Y]);
- 
-        Rect rect = holder.img.getDrawable().getBounds();
+
+        Rect rect = holder.imgView.getDrawable().getBounds();
         float dx = rect.width() * sx;
         float dy = rect.height() * sy;
 
         float nx = -x;
         float ny = -y;
+
+        holder.setDebugView("x:" + x + ", y:" + y + ", dx:" + dx + ", dy:" + dy);
 
         if (mirrorX == 0 && mirrorY == 0)
         {
@@ -314,17 +341,35 @@ public class MatrixState
         translate(nx, ny);
     }
 
-    public void mirror(FrameView parent)
+    public void mirrorX()
     {
-        float x = parent.getWidth()/2f;
-        float y = parent.getHeight()/2f;
+        float x = holder.frameView.getWidth() / 2f;
+        float y = holder.frameView.getHeight() / 2f;
         setScale(-1, 1, x, y);
 
         if (rotate == 90 || rotate == 270)
         {
             mirrorY = 1 - mirrorY;
-            return;
         }
-        mirrorX = 1 - mirrorX;
+        else
+        {
+            mirrorX = 1 - mirrorX;
+        }
+    }
+
+    public void mirrorY()
+    {
+        float x = holder.frameView.getWidth() / 2f;
+        float y = holder.frameView.getHeight() / 2f;
+        setScale(1, -1, x, y);
+
+        if (rotate == 90 || rotate == 270)
+        {
+            mirrorX = 1 - mirrorX;
+        }
+        else
+        {
+            mirrorY = 1 - mirrorY;
+        }
     }
 }
