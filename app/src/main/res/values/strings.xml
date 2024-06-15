@@ -27,8 +27,21 @@
     <string name="pos">Pos</string>
     <string name="jpg_quality">JPG quality</string>
     <string name="file_size">%.2f kb</string>
-    <string name="found_files">found %d files</string>
-    <string name="deleted_files">deleted %d files</string>
+    <string name="found_files">Found %d files</string>
+    <string name="deleted_files">Deleted %d files</string>
     <string name="color_picker">Color picker</string>
     <string name="frame_color">Frame color</string>
+    <string name="save">Save</string>
+    <string name="save_as">Save as copy</string>
+    <string name="undo">Restore from backup</string>
+    <string name="cleanup_backup">Cleanup backup</string>
+    <string name="rotate_right">Rotate right</string>
+    <string name="rotate_left">Rotate left</string>
+    <string name="mirror_x">Mirror horisontally</string>
+    <string name="mirror_y">Mirror vertically</string>
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+    <string name="info">Buttons info</string>
+    <string name="fit_width">Fit to width</string>
+    <string name="fit_height">Fit to height</string>
 </resources>

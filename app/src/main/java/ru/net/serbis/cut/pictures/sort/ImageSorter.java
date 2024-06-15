@@ -1,4 +1,4 @@
-package ru.net.serbis.cut.pictures.image;
+package ru.net.serbis.cut.pictures.sort;
 
 import java.io.*;
 import java.util.*;

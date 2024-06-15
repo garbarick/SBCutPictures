@@ -158,6 +158,9 @@ public class Main extends Activity implements TaskCallback<List<File>>, View.OnC
             case R.id.category:
                 holder.categoryMenu.show();
                 break;
+            case R.id.info:
+                new InfoDialog(this);
+                break;
             default:
                 UITool.get().notImplementedYet();
                 break;

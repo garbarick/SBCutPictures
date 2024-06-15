@@ -65,6 +65,7 @@ public abstract class ColorPicker extends AlertDialog.Builder implements DialogI
         part.setText("" + value);
     }
 
+    @Override
     public void onClick(DialogInterface dialog, int id)
     {
         switch(id)

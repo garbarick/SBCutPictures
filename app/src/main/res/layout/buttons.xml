@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="utf-8"?>
+<GridLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/buttons">
+
+    <ImageButton
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_columnWeight="1"
+        android:layout_rowWeight="1"
+        android:scaleType="centerInside"
+        android:src="@android:drawable/ic_menu_manage"
+        android:id="@+id/settings"
+        android:tooltipText="@string/settings"/>
+
+    <ImageButton
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_columnWeight="1"
+        android:layout_rowWeight="1"
+        android:scaleType="centerInside"
+        android:src="@android:drawable/ic_menu_save"
+        android:id="@+id/save"
+        android:tooltipText="@string/save"/>
+
+    <ImageButton
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_columnWeight="1"
+        android:layout_rowWeight="1"
+        android:scaleType="centerInside"
+        android:src="@drawable/save_as"
+        android:id="@+id/save_as"
+        android:tooltipText="@string/save_as"/>
+
+    <ImageButton
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_columnWeight="1"
+        android:layout_rowWeight="1"
+        android:scaleType="centerInside"
+        android:src="@android:drawable/ic_menu_delete"
+        android:id="@+id/delete"
+        android:tooltipText="@string/delete"/>
+
+    <ImageButton
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_columnWeight="1"
+        android:layout_rowWeight="1"
+        android:scaleType="centerInside"
+        android:src="@drawable/undo"
+        android:id="@+id/undo"
+        android:tooltipText="@string/undo"/>
+
+    <ImageButton
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_columnWeight="1"
+        android:layout_rowWeight="1"
+        android:scaleType="centerInside"
+        android:src="@drawable/cleanup_backup"
+        android:id="@+id/cleanup_backup"
+        android:tooltipText="@string/cleanup_backup"/>
+
+    <ImageButton
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_columnWeight="1"
+        android:layout_rowWeight="1"
+        android:scaleType="centerInside"
+        android:src="@drawable/rotate_right"
+        android:id="@+id/rotate_right"
+        android:tooltipText="@string/rotate_right"/>
+
+    <ImageButton
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_columnWeight="1"
+        android:layout_rowWeight="1"
+        android:scaleType="centerInside"
+        android:src="@drawable/mirror_x"
+        android:id="@+id/mirror_x"
+        android:tooltipText="@string/mirror_x"/>
+
+    <ImageButton
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_columnWeight="1"
+        android:layout_rowWeight="1"
+        android:scaleType="centerInside"
+        android:src="@drawable/fit_width"
+        android:id="@+id/fit_width"
+        android:tooltipText="@string/fit_width"/>
+
+    <TextView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_columnWeight="1"
+        android:layout_rowWeight="1"/>
+
+    <ImageButton
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_columnWeight="1"
+        android:layout_rowWeight="1"
+        android:scaleType="centerInside"
+        android:src="@drawable/category"
+        android:id="@+id/category"
+        android:tooltipText="@string/category"/>
+
+    <ImageButton
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_columnWeight="1"
+        android:layout_rowWeight="1"
+        android:scaleType="centerInside"
+        android:src="@android:drawable/ic_menu_info_details"
+        android:id="@+id/info"
+        android:tooltipText="@string/info"/>
+
+    <ImageButton
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_columnWeight="1"
+        android:layout_rowWeight="1"
+        android:scaleType="centerInside"
+        android:src="@drawable/rotate_left"
+        android:id="@+id/rotate_left"
+        android:tooltipText="@string/rotate_left"/>
+
+    <ImageButton
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_columnWeight="1"
+        android:layout_rowWeight="1"
+        android:scaleType="centerInside"
+        android:src="@drawable/mirror_y"
+        android:id="@+id/mirror_y"
+        android:tooltipText="@string/mirror_y"/>
+
+    <ImageButton
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_columnWeight="1"
+        android:layout_rowWeight="1"
+        android:scaleType="centerInside"
+        android:src="@drawable/fit_height"
+        android:id="@+id/fit_height"
+        android:tooltipText="@string/fit_height"/>
+
+    <TextView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_columnWeight="1"
+        android:layout_rowWeight="1"/>
+
+    <ImageButton
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_columnWeight="1"
+        android:layout_rowWeight="1"
+        android:scaleType="centerInside"
+        android:src="@android:drawable/ic_media_previous"
+        android:id="@+id/previous"
+        android:tooltipText="@string/previous"/>
+
+    <ImageButton
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_columnWeight="1"
+        android:layout_rowWeight="1"
+        android:scaleType="centerInside"
+        android:src="@android:drawable/ic_media_next"
+        android:id="@+id/next"
+        android:tooltipText="@string/next"/>
+
+</GridLayout>
+

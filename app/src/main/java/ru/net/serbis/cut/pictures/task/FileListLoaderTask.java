@@ -6,7 +6,7 @@ import java.util.*;
 import ru.net.serbis.cut.pictures.*;
 import ru.net.serbis.cut.pictures.bean.*;
 import ru.net.serbis.cut.pictures.util.*;
-import ru.net.serbis.cut.pictures.image.*;
+import ru.net.serbis.cut.pictures.sort.*;
 
 public class FileListLoaderTask extends AsyncTask<String, Integer, List<File>>
 {
