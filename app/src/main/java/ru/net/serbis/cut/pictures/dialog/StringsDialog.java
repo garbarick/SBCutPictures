@@ -136,10 +136,11 @@ public abstract class StringsDialog extends AlertDialog.Builder implements Dialo
     private void update(ParamsAdapter paramsAdapter, boolean add, Map<Integer, Param> params)
     {
         String value = paramsAdapter.getValue(params.get(R.string.value));
-        if (add)
+        if (!add)
         {
-            adapter.add(value);
+            delete();
         }
+        adapter.add(value);
         adapter.sort(
             new Comparator<String>()
             {

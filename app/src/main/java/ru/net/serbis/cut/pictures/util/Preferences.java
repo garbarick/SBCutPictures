@@ -49,7 +49,7 @@ public class Preferences extends Util
 
     public Set<String> getStringSet(String name, Set<String> defaultValue)
     {
-        return getPreferences().getStringSet(name, defaultValue);
+        return new TreeSet<String>(getPreferences().getStringSet(name, defaultValue));
     }
 
     public String get(String name)
