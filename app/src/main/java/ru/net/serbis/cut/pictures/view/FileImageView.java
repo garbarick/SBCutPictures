@@ -69,7 +69,7 @@ public class FileImageView extends ImageView implements View.OnTouchListener
         holder.setNameView(null);
         setImageBitmap(null);
         state.reset();
-        holder.setSizeView(0, 0);
+        holder.setSizeView(null);
         holder.setFileView(files, null);
     }
 
@@ -83,7 +83,7 @@ public class FileImageView extends ImageView implements View.OnTouchListener
         }
         Bitmap bitmap = getBitmap(file);
         setImageBitmap(bitmap);
-        holder.setSizeView(bitmap.getWidth(), bitmap.getHeight());
+        holder.setSizeView(bitmap);
         holder.setFileView(files, file);
         fitWidth(true, true);
     }

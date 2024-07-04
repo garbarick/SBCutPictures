@@ -1,6 +1,7 @@
 package ru.net.serbis.cut.pictures.view;
 
 import android.app.*;
+import android.graphics.*;
 import android.view.*;
 import android.widget.*;
 import java.io.*;
@@ -52,7 +53,19 @@ public class ViewsHolder
         nameView.setText(text);
     }
 
-    public void setSizeView(int width, int height)
+    public void setSizeView(Bitmap bitmap)
+    {
+        if (bitmap != null)
+        {
+            setSizeView(bitmap.getWidth(), bitmap.getHeight());
+        }
+        else
+        {
+            setSizeView(0, 0);
+        }
+    }
+
+    private void setSizeView(int width, int height)
     {
         widthView.setText(Strings.get().get(R.string.width_value, width));
         heightView.setText(Strings.get().get(R.string.height_value, height));
