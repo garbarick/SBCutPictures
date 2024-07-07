@@ -82,6 +82,7 @@ public class FileImageView extends ImageView implements View.OnTouchListener
             return;
         }
         Bitmap bitmap = getBitmap(file);
+        holder.frameView.failed(bitmap);
         setImageBitmap(bitmap);
         holder.setSizeView(bitmap);
         holder.setFileView(files, file);

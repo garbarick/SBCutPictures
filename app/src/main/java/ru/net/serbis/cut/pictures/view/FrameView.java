@@ -9,7 +9,9 @@ import ru.net.serbis.cut.pictures.param.*;
 public class FrameView extends FrameLayout
 {
     private Paint paint = new Paint();
-    
+    private LoadFailed failedView = new LoadFailed();
+    private boolean failed;
+
     public FrameView(Context context, AttributeSet attrs)
     {
         super(context, attrs);
@@ -17,6 +19,7 @@ public class FrameView extends FrameLayout
         paint.setStyle(Paint.Style.STROKE);
         updateColor();
         paint.setStrokeWidth(4);
+
         setWillNotDraw(false);
     }
 
@@ -29,7 +32,13 @@ public class FrameView extends FrameLayout
     public void onDrawForeground(Canvas canvas)
     {
         super.onDrawForeground(canvas);
-        canvas.drawRect(getFramRect(1), paint);
+
+        RectF rect = getFramRect(1);
+        canvas.drawRect(rect, paint);
+        if (failed)
+        {
+            failedView.draw(canvas, rect);
+        }
     }
 
     public RectF getFramRect(int border)
@@ -56,5 +65,10 @@ public class FrameView extends FrameLayout
             float frameWidth = height * cutWidth / cutHeight;
             getLayoutParams().width = (int) frameWidth;
         }
+    }
+
+    public void failed(Bitmap bitmap)
+    {
+        failed = bitmap == null;
     }
 }
