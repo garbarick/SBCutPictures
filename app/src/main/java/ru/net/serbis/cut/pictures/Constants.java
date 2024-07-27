@@ -16,7 +16,8 @@ public interface Constants
         "png",
         "jpg",
         "jpeg",
-        "gif"
+        "gif",
+        "webp"
     };
     List<String> EXTENSIONS = Arrays.asList(_EXTENSIONS);
 }
