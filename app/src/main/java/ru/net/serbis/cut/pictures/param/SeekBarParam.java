@@ -3,7 +3,7 @@ package ru.net.serbis.cut.pictures.param;
 import android.view.*;
 import android.widget.*;
 import ru.net.serbis.cut.pictures.*;
-import ru.net.serbis.cut.pictures.util.*;
+import ru.net.serbis.utils.*;
 
 public class SeekBarParam extends NumberParam<SeekBar>
 {

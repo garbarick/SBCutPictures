@@ -6,7 +6,7 @@ import android.widget.*;
 import java.util.*;
 import ru.net.serbis.cut.pictures.*;
 import ru.net.serbis.cut.pictures.param.*;
-import ru.net.serbis.cut.pictures.util.*;
+import ru.net.serbis.utils.*;
 
 public class ParamsAdapter
 {

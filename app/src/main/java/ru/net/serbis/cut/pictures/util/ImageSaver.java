@@ -7,6 +7,7 @@ import java.text.*;
 import java.util.*;
 import ru.net.serbis.cut.pictures.bean.*;
 import ru.net.serbis.cut.pictures.param.*;
+import ru.net.serbis.utils.*;
 
 public class ImageSaver
 {

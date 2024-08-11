@@ -11,6 +11,8 @@ import ru.net.serbis.cut.pictures.bean.*;
 import ru.net.serbis.cut.pictures.param.*;
 import ru.net.serbis.cut.pictures.task.*;
 import ru.net.serbis.cut.pictures.util.*;
+import ru.net.serbis.utils.*;
+import ru.net.serbis.utils.bean.*;
 
 public class FileImageView extends ImageView implements View.OnTouchListener
 {
@@ -208,7 +210,7 @@ public class FileImageView extends ImageView implements View.OnTouchListener
     private void deleteFileWithBackup(File file)
     {
         File backup = new File(Params.BACKUP_FOLDER.getValue(), file.getName());
-        if (IOTool.get().moveFileQuietly(file, backup))
+        if (FileUtil.get().moveFileQuietly(file, backup))
         {
             undoFiles.add(backup);
         }
@@ -255,7 +257,7 @@ public class FileImageView extends ImageView implements View.OnTouchListener
         int last = undoFiles.size() - 1;
         File undoFile = undoFiles.get(last);
         File file = new File(Params.SOURCE_FOLDER.getValue(), undoFile.getName());
-        if (IOTool.get().moveFileQuietly(undoFile, file))
+        if (FileUtil.get().moveFileQuietly(undoFile, file))
         {
             files.add(Params.POS.getValue(), file);
             undoFiles.remove(last);

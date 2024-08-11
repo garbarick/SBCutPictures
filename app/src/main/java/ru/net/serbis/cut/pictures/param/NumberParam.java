@@ -1,7 +1,7 @@
 package ru.net.serbis.cut.pictures.param;
 
 import android.view.*;
-import ru.net.serbis.cut.pictures.util.*;
+import ru.net.serbis.utils.*;
 
 public abstract class NumberParam<V extends View> extends Param<Integer, V>
 {

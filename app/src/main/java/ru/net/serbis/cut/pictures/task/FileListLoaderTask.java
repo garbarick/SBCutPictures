@@ -5,8 +5,10 @@ import java.io.*;
 import java.util.*;
 import ru.net.serbis.cut.pictures.*;
 import ru.net.serbis.cut.pictures.bean.*;
-import ru.net.serbis.cut.pictures.util.*;
 import ru.net.serbis.cut.pictures.sort.*;
+import ru.net.serbis.cut.pictures.util.*;
+import ru.net.serbis.utils.*;
+import ru.net.serbis.utils.bean.*;
 
 public class FileListLoaderTask extends AsyncTask<String, Integer, List<File>>
 {
@@ -60,7 +62,7 @@ public class FileListLoaderTask extends AsyncTask<String, Integer, List<File>>
                         result.addAll(loadLocalFiles(file));
                         return false;
                     }
-                    if (IOTool.get().checkExt(file))
+                    if (FileUtil.get().checkExt(file))
                     {
                         return true;
                     }

@@ -3,7 +3,7 @@ package ru.net.serbis.cut.pictures.handler;
 import android.content.*;
 import ru.net.serbis.cut.pictures.*;
 import ru.net.serbis.cut.pictures.activity.*;
-import ru.net.serbis.cut.pictures.util.*;
+import ru.net.serbis.utils.*;
 
 public class ExceptionHandler implements Thread.UncaughtExceptionHandler
 {

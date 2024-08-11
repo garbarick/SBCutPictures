@@ -4,9 +4,9 @@ import android.view.*;
 import android.widget.*;
 import java.util.*;
 import ru.net.serbis.cut.pictures.*;
-import ru.net.serbis.cut.pictures.listener.*;
-import ru.net.serbis.cut.pictures.util.*;
 import ru.net.serbis.cut.pictures.dialog.*;
+import ru.net.serbis.cut.pictures.listener.*;
+import ru.net.serbis.utils.*;
 
 public class StringsParam extends Param<Set<String>, Button>
 {

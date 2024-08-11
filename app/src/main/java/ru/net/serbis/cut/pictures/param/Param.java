@@ -4,7 +4,7 @@ import android.app.*;
 import android.view.*;
 import android.widget.*;
 import ru.net.serbis.cut.pictures.*;
-import ru.net.serbis.cut.pictures.util.*;
+import ru.net.serbis.utils.*;
 
 public abstract class Param<T, V extends View>
 {

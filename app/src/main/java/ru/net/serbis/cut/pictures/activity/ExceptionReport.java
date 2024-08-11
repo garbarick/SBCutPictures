@@ -3,7 +3,7 @@ package ru.net.serbis.cut.pictures.activity;
 import android.content.*;
 import android.os.*;
 import ru.net.serbis.cut.pictures.*;
-import ru.net.serbis.cut.pictures.util.*;
+import ru.net.serbis.utils.*;
 
 public class ExceptionReport extends TextActivity
 {

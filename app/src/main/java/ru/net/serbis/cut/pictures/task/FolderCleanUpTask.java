@@ -4,7 +4,8 @@ import android.os.*;
 import java.io.*;
 import ru.net.serbis.cut.pictures.*;
 import ru.net.serbis.cut.pictures.bean.*;
-import ru.net.serbis.cut.pictures.util.*;
+import ru.net.serbis.utils.*;
+import ru.net.serbis.utils.bean.*;
 
 public class FolderCleanUpTask extends AsyncTask<String, Integer, Boolean>
 {

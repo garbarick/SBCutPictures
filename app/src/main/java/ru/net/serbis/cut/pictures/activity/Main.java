@@ -12,8 +12,9 @@ import ru.net.serbis.cut.pictures.adapter.*;
 import ru.net.serbis.cut.pictures.dialog.*;
 import ru.net.serbis.cut.pictures.param.*;
 import ru.net.serbis.cut.pictures.task.*;
-import ru.net.serbis.cut.pictures.util.*;
 import ru.net.serbis.cut.pictures.view.*;
+import ru.net.serbis.utils.*;
+import ru.net.serbis.utils.bean.*;
 
 public class Main extends Activity implements TaskCallback<List<File>>, View.OnClickListener, PopupMenu.OnMenuItemClickListener
 {
@@ -23,7 +24,7 @@ public class Main extends Activity implements TaskCallback<List<File>>, View.OnC
     protected void onCreate(Bundle state)
     {
         super.onCreate(state);
-        SysTool.get().initPermissions(this);
+        new Permissions().initPermissions(this);
         setContentView(getLayout());
 
         holder.init(this);

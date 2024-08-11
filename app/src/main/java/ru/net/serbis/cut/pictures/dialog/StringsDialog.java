@@ -8,7 +8,7 @@ import java.util.*;
 import ru.net.serbis.cut.pictures.*;
 import ru.net.serbis.cut.pictures.adapter.*;
 import ru.net.serbis.cut.pictures.param.*;
-import ru.net.serbis.cut.pictures.util.*;
+import ru.net.serbis.utils.*;
 
 public abstract class StringsDialog extends AlertDialog.Builder implements DialogInterface.OnClickListener, View.OnClickListener, PopupMenu.OnMenuItemClickListener, DialogInterface.OnDismissListener
 {
@@ -49,7 +49,7 @@ public abstract class StringsDialog extends AlertDialog.Builder implements Dialo
     {
         Button neutral = dialog.getButton(Dialog.BUTTON_NEUTRAL);
         neutral.setId(Dialog.BUTTON_NEUTRAL);
-        UITool.get().setSandwitchView(neutral);
+        UITool.get().setSandwitchView(neutral, R.drawable.sandwitch);
         neutral.setOnClickListener(this);
 
         menu = new PopupMenu(getContext(), neutral);

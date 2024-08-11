@@ -2,7 +2,7 @@ package ru.net.serbis.cut.pictures.view;
 
 import android.graphics.*;
 import ru.net.serbis.cut.pictures.*;
-import ru.net.serbis.cut.pictures.util.*;
+import ru.net.serbis.utils.*;
 
 public class LoadFailed
 {
