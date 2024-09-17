@@ -4,6 +4,8 @@ import android.graphics.*;
 import ru.net.serbis.cut.pictures.*;
 import ru.net.serbis.utils.*;
 
+import ru.net.serbis.cut.pictures.R;
+
 public class LoadFailed
 {
     private Paint paint = new Paint();

@@ -10,6 +10,8 @@ import ru.net.serbis.cut.pictures.util.*;
 import ru.net.serbis.utils.*;
 import ru.net.serbis.utils.bean.*;
 
+import ru.net.serbis.cut.pictures.R;
+
 public class FileListLoaderTask extends AsyncTask<String, Integer, List<File>>
 {
     private TaskCallback<List<File>> callback;

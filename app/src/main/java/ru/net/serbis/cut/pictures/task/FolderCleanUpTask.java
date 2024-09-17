@@ -7,6 +7,8 @@ import ru.net.serbis.cut.pictures.bean.*;
 import ru.net.serbis.utils.*;
 import ru.net.serbis.utils.bean.*;
 
+import ru.net.serbis.cut.pictures.R;
+
 public class FolderCleanUpTask extends AsyncTask<String, Integer, Boolean>
 {
     private TaskCallback<Boolean> callback;

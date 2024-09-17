@@ -16,6 +16,8 @@ import ru.net.serbis.cut.pictures.view.*;
 import ru.net.serbis.utils.*;
 import ru.net.serbis.utils.bean.*;
 
+import ru.net.serbis.cut.pictures.R;
+
 public class Main extends Activity implements TaskCallback<List<File>>, View.OnClickListener, PopupMenu.OnMenuItemClickListener
 {
     private ViewsHolder holder = new ViewsHolder();

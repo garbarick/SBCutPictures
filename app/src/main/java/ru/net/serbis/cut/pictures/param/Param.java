@@ -6,6 +6,8 @@ import android.widget.*;
 import ru.net.serbis.cut.pictures.*;
 import ru.net.serbis.utils.*;
 
+import ru.net.serbis.cut.pictures.R;
+
 public abstract class Param<T, V extends View>
 {
     protected String name;

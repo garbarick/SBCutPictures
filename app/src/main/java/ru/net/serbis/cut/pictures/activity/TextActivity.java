@@ -8,6 +8,8 @@ import android.widget.*;
 import ru.net.serbis.cut.pictures.*;
 import ru.net.serbis.utils.*;
 
+import ru.net.serbis.cut.pictures.R;
+
 public class TextActivity extends Activity implements View.OnClickListener
 {
     protected EditText edit;

@@ -7,6 +7,8 @@ import android.widget.*;
 import ru.net.serbis.cut.pictures.*;
 import ru.net.serbis.utils.*;
 
+import ru.net.serbis.cut.pictures.R;
+
 public class ButtonsView extends GridLayout
 {
     public ButtonsView(Context context, AttributeSet attrs)

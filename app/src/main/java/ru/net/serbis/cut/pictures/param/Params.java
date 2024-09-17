@@ -4,6 +4,8 @@ import android.graphics.*;
 import ru.net.serbis.cut.pictures.*;
 import ru.net.serbis.utils.*;
 
+import ru.net.serbis.cut.pictures.R;
+
 public interface Params
 {
     FileParam SOURCE_FOLDER = new FileParam(R.string.source_folder, IOTool.get().getDownloadPath(), true, false);

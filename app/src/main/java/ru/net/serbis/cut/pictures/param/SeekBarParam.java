@@ -5,6 +5,8 @@ import android.widget.*;
 import ru.net.serbis.cut.pictures.*;
 import ru.net.serbis.utils.*;
 
+import ru.net.serbis.cut.pictures.R;
+
 public class SeekBarParam extends NumberParam<SeekBar>
 {
     private int max;

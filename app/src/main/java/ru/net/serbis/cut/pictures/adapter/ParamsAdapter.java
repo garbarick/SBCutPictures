@@ -8,6 +8,8 @@ import ru.net.serbis.cut.pictures.*;
 import ru.net.serbis.cut.pictures.param.*;
 import ru.net.serbis.utils.*;
 
+import ru.net.serbis.cut.pictures.R;
+
 public class ParamsAdapter
 {
     private Activity context;

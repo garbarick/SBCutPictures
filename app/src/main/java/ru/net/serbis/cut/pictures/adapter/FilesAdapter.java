@@ -10,6 +10,8 @@ import ru.net.serbis.cut.pictures.*;
 import ru.net.serbis.cut.pictures.dialog.*;
 import ru.net.serbis.utils.*;
 
+import ru.net.serbis.cut.pictures.R;
+
 public class FilesAdapter extends ArrayAdapter<File> implements AdapterView.OnItemClickListener
 {
     private File folder;

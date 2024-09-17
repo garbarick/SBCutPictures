@@ -10,6 +10,8 @@ import ru.net.serbis.cut.pictures.*;
 import ru.net.serbis.cut.pictures.bean.*;
 import ru.net.serbis.utils.*;
 
+import ru.net.serbis.cut.pictures.R;
+
 public abstract class ColorPicker extends AlertDialog.Builder implements DialogInterface.OnClickListener, SeekBar.OnSeekBarChangeListener
 {
     private View view;

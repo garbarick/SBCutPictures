@@ -7,6 +7,8 @@ import ru.net.serbis.cut.pictures.*;
 import ru.net.serbis.cut.pictures.sort.*;
 import ru.net.serbis.utils.*;
 
+import ru.net.serbis.cut.pictures.R;
+
 public class InfoAdapter extends ArrayAdapter<ImageButton>
 {
     public InfoAdapter(Context context)
