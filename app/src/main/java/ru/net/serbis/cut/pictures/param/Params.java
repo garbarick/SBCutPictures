@@ -3,6 +3,7 @@ package ru.net.serbis.cut.pictures.param;
 import android.graphics.*;
 import ru.net.serbis.cut.pictures.*;
 import ru.net.serbis.utils.*;
+import ru.net.serbis.utils.param.*;
 
 import ru.net.serbis.cut.pictures.R;
 
@@ -15,8 +16,8 @@ public interface Params
     EditTextParam NAME_PATTERN = new EditTextParam(R.string.name_pattern, "yyyy-MM-dd_HH-mm-ss");
     ImageTypeParam IMAGE_FORMAT = new ImageTypeParam();
     StringsParam CATEGORIES = new StringsParam(R.string.categories);
-    EditNumberParam POS = new EditNumberParam(R.string.pos, 0, false);
-    SeekBarParam JPG_QUALITY = new SeekBarParam(R.string.jpg_quality, 100, 80);
+    EditNumberParam POS = new EditNumberParam(R.string.pos, 0);
+    SeekBarParam JPG_QUALITY = new SeekBarParam(R.string.jpg_quality, 0, 100, 80, true);
     EditTextParam CATEGORY = new EditTextParam(R.string.category, "");
     ColorParam FRAME_COLOR = new ColorParam(R.string.frame_color, Color.GREEN);
     

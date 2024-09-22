@@ -1,6 +1,7 @@
 package ru.net.serbis.cut.pictures.param;
 
 import ru.net.serbis.cut.pictures.*;
+import ru.net.serbis.utils.param.*;
 
 public class ImageTypeParam extends SpinnerParam<SaveImgFormat>
 {

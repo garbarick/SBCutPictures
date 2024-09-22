@@ -8,13 +8,14 @@ import android.widget.*;
 import java.io.*;
 import java.util.*;
 import ru.net.serbis.cut.pictures.*;
-import ru.net.serbis.cut.pictures.adapter.*;
 import ru.net.serbis.cut.pictures.dialog.*;
 import ru.net.serbis.cut.pictures.param.*;
 import ru.net.serbis.cut.pictures.task.*;
 import ru.net.serbis.cut.pictures.view.*;
 import ru.net.serbis.utils.*;
+import ru.net.serbis.utils.adapter.*;
 import ru.net.serbis.utils.bean.*;
+import ru.net.serbis.utils.dialog.*;
 
 import ru.net.serbis.cut.pictures.R;
 
