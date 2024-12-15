@@ -13,7 +13,7 @@
         android:scaleType="centerInside"
         android:src="@android:drawable/ic_menu_manage"
         android:id="@+id/settings"
-        android:tooltipText="@string/settings"/>
+        android:contentDescription="@string/settings"/>
 
     <ImageButton
         android:layout_width="0dp"
@@ -23,7 +23,7 @@
         android:scaleType="centerInside"
         android:src="@android:drawable/ic_menu_save"
         android:id="@+id/save"
-        android:tooltipText="@string/save"/>
+        android:contentDescription="@string/save"/>
 
     <ImageButton
         android:layout_width="0dp"
@@ -33,7 +33,7 @@
         android:scaleType="centerInside"
         android:src="@drawable/save_as"
         android:id="@+id/save_as"
-        android:tooltipText="@string/save_as"/>
+        android:contentDescription="@string/save_as"/>
 
     <ImageButton
         android:layout_width="0dp"
@@ -43,7 +43,7 @@
         android:scaleType="centerInside"
         android:src="@android:drawable/ic_menu_delete"
         android:id="@+id/delete"
-        android:tooltipText="@string/delete"/>
+        android:contentDescription="@string/delete"/>
 
     <ImageButton
         android:layout_width="0dp"
@@ -53,7 +53,7 @@
         android:scaleType="centerInside"
         android:src="@drawable/undo"
         android:id="@+id/undo"
-        android:tooltipText="@string/undo"/>
+        android:contentDescription="@string/undo"/>
 
     <ImageButton
         android:layout_width="0dp"
@@ -63,7 +63,7 @@
         android:scaleType="centerInside"
         android:src="@drawable/cleanup_backup"
         android:id="@+id/cleanup_backup"
-        android:tooltipText="@string/cleanup_backup"/>
+        android:contentDescription="@string/cleanup_backup"/>
 
     <ImageButton
         android:layout_width="0dp"
@@ -73,7 +73,7 @@
         android:scaleType="centerInside"
         android:src="@drawable/rotate_right"
         android:id="@+id/rotate_right"
-        android:tooltipText="@string/rotate_right"/>
+        android:contentDescription="@string/rotate_right"/>
 
     <ImageButton
         android:layout_width="0dp"
@@ -83,7 +83,7 @@
         android:scaleType="centerInside"
         android:src="@drawable/mirror_x"
         android:id="@+id/mirror_x"
-        android:tooltipText="@string/mirror_x"/>
+        android:contentDescription="@string/mirror_x"/>
 
     <ImageButton
         android:layout_width="0dp"
@@ -93,7 +93,7 @@
         android:scaleType="centerInside"
         android:src="@drawable/fit_width"
         android:id="@+id/fit_width"
-        android:tooltipText="@string/fit_width"/>
+        android:contentDescription="@string/fit_width"/>
 
     <TextView
         android:layout_width="0dp"
@@ -109,7 +109,7 @@
         android:scaleType="centerInside"
         android:src="@drawable/category"
         android:id="@+id/category"
-        android:tooltipText="@string/category"/>
+        android:contentDescription="@string/category"/>
 
     <ImageButton
         android:layout_width="0dp"
@@ -119,7 +119,7 @@
         android:scaleType="centerInside"
         android:src="@android:drawable/ic_menu_info_details"
         android:id="@+id/info"
-        android:tooltipText="@string/info"/>
+        android:contentDescription="@string/info"/>
 
     <ImageButton
         android:layout_width="0dp"
@@ -129,7 +129,7 @@
         android:scaleType="centerInside"
         android:src="@drawable/rotate_left"
         android:id="@+id/rotate_left"
-        android:tooltipText="@string/rotate_left"/>
+        android:contentDescription="@string/rotate_left"/>
 
     <ImageButton
         android:layout_width="0dp"
@@ -139,7 +139,7 @@
         android:scaleType="centerInside"
         android:src="@drawable/mirror_y"
         android:id="@+id/mirror_y"
-        android:tooltipText="@string/mirror_y"/>
+        android:contentDescription="@string/mirror_y"/>
 
     <ImageButton
         android:layout_width="0dp"
@@ -149,7 +149,7 @@
         android:scaleType="centerInside"
         android:src="@drawable/fit_height"
         android:id="@+id/fit_height"
-        android:tooltipText="@string/fit_height"/>
+        android:contentDescription="@string/fit_height"/>
 
     <TextView
         android:layout_width="0dp"
@@ -165,7 +165,7 @@
         android:scaleType="centerInside"
         android:src="@android:drawable/ic_media_previous"
         android:id="@+id/previous"
-        android:tooltipText="@string/previous"/>
+        android:contentDescription="@string/previous"/>
 
     <ImageButton
         android:layout_width="0dp"
@@ -175,7 +175,7 @@
         android:scaleType="centerInside"
         android:src="@android:drawable/ic_media_next"
         android:id="@+id/next"
-        android:tooltipText="@string/next"/>
+        android:contentDescription="@string/next"/>
 
 </GridLayout>
 

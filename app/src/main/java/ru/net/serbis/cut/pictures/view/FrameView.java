@@ -29,9 +29,9 @@ public class FrameView extends FrameLayout
     }
 
     @Override
-    public void onDrawForeground(Canvas canvas)
+    protected void dispatchDraw(Canvas canvas)
     {
-        super.onDrawForeground(canvas);
+        super.dispatchDraw(canvas);
 
         RectF rect = getFramRect(1);
         canvas.drawRect(rect, paint);

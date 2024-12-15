@@ -37,7 +37,7 @@ public class InfoAdapter extends ArrayAdapter<ImageButton>
         ImageButton button = getItem(position);
         view = LayoutInflater.from(getContext()).inflate(R.layout.resource_img, parent, false);
         TextView text = UITool.get().findView(view, R.id.name);
-        text.setText(button.getTooltipText());
+        text.setText(button.getContentDescription());
         ImageView img = UITool.get().findView(view, R.id.img);
         img.setBackground(button.getDrawable());
         return view;

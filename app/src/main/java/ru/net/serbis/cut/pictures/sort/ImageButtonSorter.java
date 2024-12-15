@@ -8,6 +8,6 @@ public class ImageButtonSorter implements Comparator<ImageButton>
     @Override
     public int compare(ImageButton p1, ImageButton p2)
     {
-        return p1.getTooltipText().toString().compareTo(p2.getTooltipText().toString());
+        return p1.getContentDescription().toString().compareTo(p2.getContentDescription().toString());
     }
 }
