@@ -12,7 +12,8 @@
         android:icon="@drawable/app"
         android:label="@string/app"
         android:theme="@style/app"
-		android:resizeableActivity="true">
+		android:resizeableActivity="true"
+        android:requestLegacyExternalStorage="true">
 
         <activity
             android:name=".activity.Main"
