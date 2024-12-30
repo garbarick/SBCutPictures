@@ -31,7 +31,6 @@
     <string name="mirror_y">Mirror vertically</string>
     <string name="next">Next</string>
     <string name="previous">Previous</string>
-    <string name="info">Buttons info</string>
     <string name="fit_width">Fit to width</string>
     <string name="fit_height">Fit to height</string>
     <string name="load_failed">load failed</string>

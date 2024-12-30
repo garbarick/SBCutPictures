@@ -8,7 +8,6 @@ import android.widget.*;
 import java.io.*;
 import java.util.*;
 import ru.net.serbis.cut.pictures.*;
-import ru.net.serbis.cut.pictures.dialog.*;
 import ru.net.serbis.cut.pictures.param.*;
 import ru.net.serbis.cut.pictures.task.*;
 import ru.net.serbis.cut.pictures.view.*;
@@ -163,7 +162,7 @@ public class Main extends Activity implements TaskCallback<List<File>>, View.OnC
                 holder.categoryMenu.show();
                 break;
             case R.id.info:
-                new InfoDialog(this);
+                new InfoDialog(this, R.layout.buttons);
                 break;
             default:
                 UITool.get().notImplementedYet();

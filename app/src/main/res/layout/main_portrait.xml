@@ -6,7 +6,7 @@
     android:orientation="vertical"
     android:id="@+id/main">
 
-    <ru.net.serbis.cut.pictures.view.ButtonsView
+    <ru.net.serbis.utils.view.ButtonsView
         android:layout_width="match_parent"
         android:layout_height="150dp"
         android:columnCount="6"
